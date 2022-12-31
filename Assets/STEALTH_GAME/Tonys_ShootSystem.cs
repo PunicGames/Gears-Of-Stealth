@@ -119,13 +119,13 @@ public class Tonys_ShootSystem : MonoBehaviour
         audioManager = transform.GetComponent<AudioManager>();
         anim = GetComponentInParent<Animator>();
 
-        // Display initialization
-        ammunitionDisplay = GameObject.Find("Municion").GetComponent<TextMeshProUGUI>();
-        rechargingDisplay = GameObject.Find("Recargando");
-        rechargingDisplay.SetActive(false);
+        //// Display initialization
+        //ammunitionDisplay = GameObject.Find("Municion").GetComponent<TextMeshProUGUI>();
+        //rechargingDisplay = GameObject.Find("Recargando");
+        //rechargingDisplay.SetActive(false);
 
-        weaponDisplay = GameObject.Find("CurrentWeapon").GetComponent<Image>();
-        weaponDisplay.sprite = weaponSprites[0];
+        //weaponDisplay = GameObject.Find("CurrentWeapon").GetComponent<Image>();
+        //weaponDisplay.sprite = weaponSprites[0];
 
         // Display cursor
         //if (desktop) { 
