@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/IntroScene/IntroScene.unity
+    guid: 0e537d1e1cb783f4995c3f08cbdab7b9
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 88c458f63e6a8bb449b03bbd06bad870
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: 1ed0e5827b53516478bca0cb17ecf3b4
+  - enabled: 1
+    path: Assets/Scenes/NoGunsMode.unity
+    guid: 589358ff4ed314e4fa45abab4c9a0189
+  - enabled: 1
+    path: Assets/Scenes/CP_Scenes/BossFight_Demo.unity
+    guid: 4e15ac16f2ee44848b145f83f892a6f8
+  m_configObjects: {}

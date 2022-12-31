@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Wall
+  - Shop
+  - DeathPlane
+  - Gear
+  - Ammo
+  - Heal
+  - Fire
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Floor
+  - Water
+  - UI
+  - Player
+  - Enemy
+  - Shootable
+  - Walls
+  - postProcess
+  - mouseRaycast
+  - Obstacle
+  - Grenade
+  - enemyFriendly
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - noPlayerDetect
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Top
+    uniqueID: 1973752745
+    locked: 0
