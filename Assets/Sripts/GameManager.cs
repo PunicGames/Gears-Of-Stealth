@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -21,31 +22,13 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             OptionsInitilizer_DefaultValues();
-            StartCoroutine(InitializeLootLocker());
         }
 
         
         //DeviceDetection();
     }
 
-    private void DeviceDetection() { 
-        // DeviceType.Console || DeviceType.Desktop || DeviceType.Handheld) 
-        if (Application.isMobilePlatform)
-        {
-            Debug.Log("Handheld");
-        }
-        else { 
-            if (SystemInfo.deviceType == DeviceType.Desktop)
-            {
-                Debug.Log("Desktop");
-            }
-            else if (SystemInfo.deviceType == DeviceType.Console)
-            {
-                Debug.Log("Console");
-            }
-        }
-    }
-
+   
     public void SetAntialiassing(int option)
     {
 
@@ -89,29 +72,22 @@ public class GameManager : MonoBehaviour
             QualitySettings.SetQualityLevel(2);
         }
         // Activate from default both post processing options
-        pP_controller.UpdateBloom(true);
-        pP_controller.UpdateColorGrading(true);
+        pP_controller?.UpdateBloom(true);
+        pP_controller?.UpdateColorGrading(true);
 
         
         SetAntialiassing(PlayerPrefs.GetInt("antialiasing"));
     }
 
-    public IEnumerator InitializeLootLocker()
+
+    public void LoadLevel(string name)
     {
-        bool done = false;
-        LootLockerSDKManager.StartGuestSession((response) =>
-        {
-            if (response.success)
-            {
-                print("Setting up LootLocker");
-                done = true;
-            }
-            else
-            {
-                print(response.Error);
-                done = true;
-            }
-        });
-        yield return new WaitWhile(() => done == false);
+        SceneManager.LoadScene(name);
     }
+
+    public void ExitApplication()
+    {
+        Application.Quit();
+    }
+
 }
