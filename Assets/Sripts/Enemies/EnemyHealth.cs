@@ -195,9 +195,9 @@ public class EnemyHealth : MonoBehaviour
     public void DropItems()
     {
         // Suelta moneda
-        GameObject moneda = Instantiate(coin, transform.position, Quaternion.identity);
+        //GameObject moneda = Instantiate(coin, transform.position, Quaternion.identity);
         //moneda.gameObject.GetComponent<Moneda>().value = scoreValue;
-        moneda.gameObject.GetComponent<Moneda>().value = Random.Range(minScoreValue, maxScoreValue);
+        //moneda.gameObject.GetComponent<Moneda>().value = Random.Range(minScoreValue, maxScoreValue);
 
         //Soltar items consumibles
 
@@ -205,7 +205,7 @@ public class EnemyHealth : MonoBehaviour
         if (aux <= itemsRatio)
         {
             int index = Random.Range(0, items.Length);
-            GameObject item = Instantiate(items[index], transform.position + new Vector3(0.8f, 0f, -0.8f), Quaternion.identity);
+            //GameObject item = Instantiate(items[index], transform.position + new Vector3(0.8f, 0f, -0.8f), Quaternion.identity);
         }
     }
 
