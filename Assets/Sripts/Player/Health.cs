@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
+
+    [SerializeField] private GameObject finPartidaUI;
+    [SerializeField] private GameObject controlerUI;
+
     [SerializeField] bool normalMode = true;
     public float maxHealth = 100;
     public float currentHealth;
@@ -168,31 +172,35 @@ public class Health : MonoBehaviour
         // Finish walking sound
         playerMovement.footSteps.Stop();
 
-        if (!isTonyScene)
-            // Tiempo de espera para el menú de resumen
-            Invoke(nameof(LoadResume), 3);
-        else
-
-            Invoke(nameof(LoadMainMenu), 4);
+        //if (!isTonyScene)
+        //    // Tiempo de espera para el menú de resumen
+        //    Invoke(nameof(LoadResume), 3);
+        //else
+            Invoke(nameof(LoadFinPartida), 4);
 
 
     }
 
-    public void LoadResume()
-    {
-        Debug.Log("LLEGA 2 ");
-        PauseMenu.pauseAllSounds(true);
-        PauseMenu.pauseShopMusic(true);
-        int minutes = GameObject.Find("GameRegistry").GetComponent<GameRegistry>().minutes;
-        int seconds = GameObject.Find("GameRegistry").GetComponent<GameRegistry>().seconds;
-        int bulletsHit = playerStats.numBulletsHit;
-        int bulletsMissed = playerStats.numBulletsMissed;
-        int goldEarned = playerStats.numGoldEarned;
-        int defeatedEnemies = playerStats.numDefeatedEnemies;
-        GameObject.Find("InGameUI").GetComponent<GestorUIinGame>().FinishGame(minutes, seconds, bulletsHit, bulletsMissed, goldEarned, defeatedEnemies);
-        GameObject.Find("InGameMusic").GetComponent<InGameMusicManager>().SetGameOverMusic();
-        //Destroy(gameObject);
+    public void LoadFinPartida() {
+        Time.timeScale = 0.0f;
+        finPartidaUI.SetActive(true);
+        controlerUI.SetActive(false);
     }
+
+    //public void LoadResume()
+    //{
+    //    PauseMenu.pauseAllSounds(true);
+    //    PauseMenu.pauseShopMusic(true);
+    //    int minutes = GameObject.Find("GameRegistry").GetComponent<GameRegistry>().minutes;
+    //    int seconds = GameObject.Find("GameRegistry").GetComponent<GameRegistry>().seconds;
+    //    int bulletsHit = playerStats.numBulletsHit;
+    //    int bulletsMissed = playerStats.numBulletsMissed;
+    //    int goldEarned = playerStats.numGoldEarned;
+    //    int defeatedEnemies = playerStats.numDefeatedEnemies;
+    //    GameObject.Find("InGameUI").GetComponent<GestorUIinGame>().FinishGame(minutes, seconds, bulletsHit, bulletsMissed, goldEarned, defeatedEnemies);
+    //    GameObject.Find("InGameMusic").GetComponent<InGameMusicManager>().SetGameOverMusic();
+    //    //Destroy(gameObject);
+    //}
     private void LoadMainMenu()
     {
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);

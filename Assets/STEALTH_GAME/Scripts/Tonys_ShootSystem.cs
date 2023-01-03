@@ -120,9 +120,9 @@ public class Tonys_ShootSystem : MonoBehaviour
         anim = GetComponentInParent<Animator>();
 
         //// Display initialization
-        //ammunitionDisplay = GameObject.Find("Municion").GetComponent<TextMeshProUGUI>();
-        //rechargingDisplay = GameObject.Find("Recargando");
-        //rechargingDisplay.SetActive(false);
+        ammunitionDisplay = GameObject.Find("Municion").GetComponent<TextMeshProUGUI>();
+        rechargingDisplay = GameObject.Find("Recargando");
+        rechargingDisplay.SetActive(false);
 
         //weaponDisplay = GameObject.Find("CurrentWeapon").GetComponent<Image>();
         //weaponDisplay.sprite = weaponSprites[0];
@@ -149,11 +149,7 @@ public class Tonys_ShootSystem : MonoBehaviour
 
         if (ammunitionDisplay != null)
         {
-            if (selectedGun != 0)
-                ammunitionDisplay.text = (guns.getGuns()[selectedGun].bulletsLeftInMagazine + "/" + guns.getGuns()[selectedGun].totalBullets);
-            else // En caso de ser la pistola
-                ammunitionDisplay.text = guns.getGuns()[selectedGun].bulletsLeftInMagazine + "/9999";
-
+            ammunitionDisplay.text = (guns.getGuns()[selectedGun].bulletsLeftInMagazine + "/" + guns.getGuns()[selectedGun].totalBullets);
         }
     }
 

@@ -118,14 +118,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326825199239823893}
-  m_LocalRotation: {x: 0.43066415, y: 0.562917, z: -0.5114815, w: 0.485839}
+  m_LocalRotation: {x: 0.3934123, y: 0.52339727, z: -0.5518554, w: 0.51646656}
   m_LocalPosition: {x: 0.009, y: 0.713, z: 0.293}
   m_LocalScale: {x: 0.007864772, y: 0.015729545, z: 0.07791686}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 326825201134240272}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 83.885, y: 92.526, z: -6.543}
+  m_LocalEulerAnglesHint: {x: 79.752, y: 36.741, z: -62.784}
 --- !u!1 &326825199327692224
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b342d8ce5c2fd48b8fa3147d48d1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 0.6
+  m_Weight: 1
   m_Effectors: []
 --- !u!1 &326825201134240275
 GameObject:
@@ -46724,12 +46724,12 @@ GameObject:
   - component: {fileID: 7872201523551213158}
   - component: {fileID: 7872201523551213145}
   - component: {fileID: 7872201523551213159}
-  - component: {fileID: 5770133982613741536}
   - component: {fileID: 5581386437086564701}
   - component: {fileID: 2367806184134490947}
   - component: {fileID: 7960147280893776882}
   - component: {fileID: 4180880843841280077}
   - component: {fileID: 5460775130313560205}
+  - component: {fileID: 5627487526162282460}
   m_Layer: 6
   m_Name: Stealth_JACOB
   m_TagString: Player
@@ -46773,7 +46773,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!65 &7061297054457857738
 BoxCollider:
@@ -46818,7 +46818,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: ba94ea500e159c8428079451e59e6b40, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.09
-  m_Pitch: 1
+  m_Pitch: 1.83
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -47016,7 +47016,7 @@ MonoBehaviour:
   damageColor: {r: 1, g: 0, b: 0, a: 0.1}
   invincibilityTime: 0
   NoGunsMode: 0
-  isTonyScene: 0
+  isTonyScene: 1
   electricBarrier: 0
   popupPosition: {fileID: 5581930487358512865}
   healClip: {fileID: 8300000, guid: 8f94106ebac42d04bba3aaf6423132fb, type: 3}
@@ -47242,21 +47242,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.8947536
   m_Center: {x: 0, y: 0.52, z: -0.02}
---- !u!114 &5770133982613741536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7872201523551213144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43c14531033af09499daf8c77e76a09f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  totalCoinsInGame: 0
-  popupPosition: {fileID: 5581930487358512865}
-  playerStats: {fileID: 7960147280893776882}
 --- !u!114 &5581386437086564701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47269,7 +47254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 831a9c56b81b84a40a32a4915aaa31ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popUpObject: {fileID: 7578110236925590997, guid: 82e6bf8e920b7514fb13d6adf4019ed6, type: 3}
+  popUpObject: {fileID: 7578110236925590997, guid: fdc99ee969c18bb4a8aacfaab76d5428, type: 3}
 --- !u!114 &2367806184134490947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47335,7 +47320,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -47417,6 +47402,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5627487526162282460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7872201523551213144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee2273ae07376b49bfd94874d32f943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shoot_sys: {fileID: 2535862604270572002}
+  crouch_steps: {fileID: 5460775130313560205}
+  shootSoundRadius: 3.5
+  crouchSoundRadius: 1.5
+  walkSoundRadius: 6
 --- !u!1 &7904983156121620471
 GameObject:
   m_ObjectHideFlags: 0
