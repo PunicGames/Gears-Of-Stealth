@@ -588,7 +588,7 @@ public class CP_GunnerBehaviour : MonoBehaviour
         animator.SetFloat("check_time", 1f);
         TransitionToPatrol(patrolIdleTime);
 
-        StartCoroutine(LerpTurnTo(1f, patrolPoints[nextPatrolPoint].forward));
+        StartCoroutine(LerpTurnTo(2f, patrolPoints[nextPatrolPoint].forward));
     }
 
     public void TransitionToAlert(Vector3 lastSeenPos, bool t)
@@ -778,7 +778,7 @@ public class CP_GunnerBehaviour : MonoBehaviour
             if (currentState != standardState.COMBAT && currentState != standardState.ALERTED)
             {
                 //TransitionToAlert(lastSeenPos, true);
-                TransitionToAlert(RandomNavmeshLocation(12,lastSeenPos), true);
+                TransitionToAlert(RandomNavmeshLocation(20,lastSeenPos), true);
             }
         }
         else

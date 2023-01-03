@@ -79,7 +79,7 @@ public class ManageShops : MonoBehaviour
     private GameObject player;
 
     // Coin displayer in shop
-    [SerializeField]private TextMeshProUGUI shopCoins;
+    [SerializeField] private TextMeshProUGUI shopCoins;
 
     private void Start()
     {
@@ -417,7 +417,7 @@ public class ManageShops : MonoBehaviour
                 }
             }
 
-            
+
 
             // Generacion de 2 perks existentes
             int[] idxExistentPerks = new int[2];
@@ -434,8 +434,8 @@ public class ManageShops : MonoBehaviour
                     numPerksGenerated++;
                 }
             }
-            
-            
+
+
             // Mostrar en tienda ventajas nuevas
             titleText[3].text = perksTexts[generatedPerkIndex];
             displaysPerks[0].sprite = spritesPerks[generatedPerkIndex];
@@ -484,7 +484,7 @@ public class ManageShops : MonoBehaviour
                     }
                 }
             }
-            
+
             numNewPerksGenerated = 1;
 
 
@@ -496,7 +496,8 @@ public class ManageShops : MonoBehaviour
 
             for (int i = 0; i < playerPerkLevels.Length; i++)
             {
-                if (playerPerkLevels[i] != 4 && playerPerks[i]) { // No maxeada y que tenga el jugador
+                if (playerPerkLevels[i] != 4 && playerPerks[i])
+                { // No maxeada y que tenga el jugador
                     numPerksNotMaxLevel++;
                 }
             }
@@ -504,13 +505,17 @@ public class ManageShops : MonoBehaviour
             // Se generan las ventajas que no estén al máximo nivel
             bool[] generatedPerks = new bool[playerPerks.Length];
 
-            if (numPerksNotMaxLevel != 0) { 
+            if (numPerksNotMaxLevel != 0)
+            {
                 bool generated = false;
-                for (int i = 0; i < numPerksNotMaxLevel; i++) {
+                for (int i = 0; i < numPerksNotMaxLevel; i++)
+                {
                     generated = false;
-                    while (!generated) {
+                    while (!generated)
+                    {
                         int idx = Random.Range(0, playerPerks.Length);
-                        if (playerPerks[idx] && (playerPerkLevels[idx] != 4) && !generatedPerks[idx]) { 
+                        if (playerPerks[idx] && (playerPerkLevels[idx] != 4) && !generatedPerks[idx])
+                        {
                             generated = true;
                             indexes.Add(idx);
                             generatedPerks[idx] = true;
@@ -520,9 +525,11 @@ public class ManageShops : MonoBehaviour
             }
 
             // Se generan las que están al máximo nivel
-            if (indexes.Count != 3) {
+            if (indexes.Count != 3)
+            {
                 bool generated = false;
-                for (int i = numPerksNotMaxLevel; i < 3; i++) {
+                for (int i = numPerksNotMaxLevel; i < 3; i++)
+                {
                     generated = false;
                     while (!generated)
                     {
@@ -537,7 +544,8 @@ public class ManageShops : MonoBehaviour
             }
 
             // Se prepara la UI
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++)
+            {
                 perksNewOldGeneratedIndexes[i] = indexes[i];
 
                 // Display en UI
@@ -550,33 +558,34 @@ public class ManageShops : MonoBehaviour
                     coinsText[i + 3].text = "MAX. LVL";
                     continue;
                 }
-                else { 
+                else
+                {
                     // Si no está al máximo nivel
                     switch (indexes[i])
                     {
                         case 0:
-                                coinsText[i + 3].text = (rapidFirePrices[playerPerkLevels[indexes[i]]]).ToString();
+                            coinsText[i + 3].text = (rapidFirePrices[playerPerkLevels[indexes[i]]]).ToString();
                             break;
                         case 1:
-                                coinsText[i + 3].text = (laserShotPrices[playerPerkLevels[indexes[i]]]).ToString();
+                            coinsText[i + 3].text = (laserShotPrices[playerPerkLevels[indexes[i]]]).ToString();
                             break;
                         case 2:
-                                coinsText[i + 3].text = (bigShotPrices[playerPerkLevels[indexes[i]]]).ToString();
+                            coinsText[i + 3].text = (bigShotPrices[playerPerkLevels[indexes[i]]]).ToString();
                             break;
                         case 3:
-                                coinsText[i + 3].text = (tacticVestPrices[playerPerkLevels[indexes[i]]]).ToString();
+                            coinsText[i + 3].text = (tacticVestPrices[playerPerkLevels[indexes[i]]]).ToString();
                             break;
                         case 4:
-                                coinsText[i + 3].text = (tacticalBootsPrices[playerPerkLevels[indexes[i]]]).ToString();
+                            coinsText[i + 3].text = (tacticalBootsPrices[playerPerkLevels[indexes[i]]]).ToString();
                             break;
                         case 5:
-                                coinsText[i + 3].text = (medicPrices[playerPerkLevels[indexes[i]]]).ToString();
+                            coinsText[i + 3].text = (medicPrices[playerPerkLevels[indexes[i]]]).ToString();
                             break;
                         case 6:
-                                coinsText[i + 3].text = (electricalBarrierPrices[playerPerkLevels[indexes[i]]]).ToString();
+                            coinsText[i + 3].text = (electricalBarrierPrices[playerPerkLevels[indexes[i]]]).ToString();
                             break;
                         case 7:
-                                coinsText[i + 3].text = (gunsmithPrices[playerPerkLevels[indexes[i]]]).ToString();
+                            coinsText[i + 3].text = (gunsmithPrices[playerPerkLevels[indexes[i]]]).ToString();
                             break;
                         default:
                             break;
@@ -586,359 +595,362 @@ public class ManageShops : MonoBehaviour
             }
 
             numNewPerksGenerated = 0;
-        
+
         }
-        
-        
+
+
     }
 
-    public void BuyGunAmmo1()
-    {
+    //    public void BuyGunAmmo1()
+    //    {
 
 
-        int numGunsHasAlreadyPlayer = 0;
-        bool[] playerHasGuns = player.GetComponentInChildren<ShootSystem>().availableGuns;
-        for (int i = 0; i < playerHasGuns.Length; i++)
-        {
-            if (playerHasGuns[i])
-            {
-                numGunsHasAlreadyPlayer++;
-            }
-        }
+    //        int numGunsHasAlreadyPlayer = 0;
+    //        bool[] playerHasGuns = player.GetComponentInChildren<ShootSystem>().availableGuns;
+    //        for (int i = 0; i < playerHasGuns.Length; i++)
+    //        {
+    //            if (playerHasGuns[i])
+    //            {
+    //                numGunsHasAlreadyPlayer++;
+    //            }
+    //        }
 
 
-        if (numGunsGenerated > 0)  // Se comprará un arma
-        {
-            Debug.Log("Se intenta comprar arma por" + gunPrices[gunsAmmoGeneratedIndexes[0]]);
-            if (player.GetComponent<CoinSystem>().totalCoinsInGame < gunPrices[gunsAmmoGeneratedIndexes[0]]) return; // Si el jugador no tiene suficientes monedas no compra nada
-            if (playerHasGuns[gunsAmmoGeneratedIndexes[0]]) return; // Si hemos comprado el arma y la tienda todavia no se ha actualizado, salimos del método
-            // Se compra el arma
-            player.GetComponentInChildren<ShootSystem>().ActivateGun(gunsAmmoGeneratedIndexes[0]);
-            if (numGunsHasAlreadyPlayer == 3 && playerHasGuns[0]) // Si el jugador tiene 3 armas y una de ellas es la pistola, se sustituye la pistola por la nueva
-            {
-                player.GetComponentInChildren<ShootSystem>().DeactivateGun(0);
-            }
+    //        if (numGunsGenerated > 0)  // Se comprará un arma
+    //        {
+    //            Debug.Log("Se intenta comprar arma por" + gunPrices[gunsAmmoGeneratedIndexes[0]]);
+    //            if (player.GetComponent<CoinSystem>().totalCoinsInGame < gunPrices[gunsAmmoGeneratedIndexes[0]]) return; // Si el jugador no tiene suficientes monedas no compra nada
+    //            if (playerHasGuns[gunsAmmoGeneratedIndexes[0]]) return; // Si hemos comprado el arma y la tienda todavia no se ha actualizado, salimos del método
+    //            // Se compra el arma
+    //            player.GetComponentInChildren<ShootSystem>().ActivateGun(gunsAmmoGeneratedIndexes[0]);
+    //            if (numGunsHasAlreadyPlayer == 3 && playerHasGuns[0]) // Si el jugador tiene 3 armas y una de ellas es la pistola, se sustituye la pistola por la nueva
+    //            {
+    //                player.GetComponentInChildren<ShootSystem>().DeactivateGun(0);
+    //            }
 
-            // Le quitamos el dinero
-            player.GetComponent<CoinSystem>().SpendCoin(gunPrices[gunsAmmoGeneratedIndexes[0]]);
-            shopCoins.text = player.GetComponent<CoinSystem>().totalCoinsInGame.ToString(); ;
-            coinsText[0].text = "PURCHASED";
-        }
-        else if (numGunsGenerated == 0) // Se comprará munición
-        {
-            Debug.Log("Se intenta comprar municion por" + ammoPrices[gunsAmmoGeneratedIndexes[0]]);
-            if (player.GetComponent<CoinSystem>().totalCoinsInGame < ammoPrices[gunsAmmoGeneratedIndexes[0]]) return;
-            int ammoQ = ammoQuantity[gunsAmmoGeneratedIndexes[0]];
-            player.GetComponentInChildren<ShootSystem>().guns.getGuns()[gunsAmmoGeneratedIndexes[0]].AddAmmo(ammoQ);
-            player.GetComponent<CoinSystem>().SpendCoin(ammoPrices[gunsAmmoGeneratedIndexes[0]]);
-            shopCoins.text = player.GetComponent<CoinSystem>().totalCoinsInGame.ToString(); ;
-        }
-    }
-    public void BuyGunAmmo2()
-    {
-
-
-        int numGunsHasAlreadyPlayer = 0;
-        bool[] playerHasGuns = player.GetComponentInChildren<ShootSystem>().availableGuns;
-        for (int i = 0; i < playerHasGuns.Length; i++)
-        {
-            if (playerHasGuns[i])
-            {
-                numGunsHasAlreadyPlayer++;
-            }
-        }
-
-        if (numGunsGenerated > 1) // Se compra un arma
-        {
-            Debug.Log("Se intenta comprar arma por" + gunPrices[gunsAmmoGeneratedIndexes[1]]);
-            if (player.GetComponent<CoinSystem>().totalCoinsInGame < gunPrices[gunsAmmoGeneratedIndexes[1]]) return;
-
-            if (playerHasGuns[gunsAmmoGeneratedIndexes[1]]) return; // Si hemos comprado el arma y la tienda todavia no se ha actualizado, salimos del método
-
-            if (numGunsHasAlreadyPlayer == 3 && playerHasGuns[0]) // Si el jugador tiene 3 armas y una de ellas es la pistola, se sustituye la pistola por la nueva
-            {
-                player.GetComponentInChildren<ShootSystem>().DeactivateGun(0);
-            }
-
-            player.GetComponentInChildren<ShootSystem>().ActivateGun(gunsAmmoGeneratedIndexes[1]);
-            player.GetComponent<CoinSystem>().SpendCoin(gunPrices[gunsAmmoGeneratedIndexes[1]]);
-            shopCoins.text = player.GetComponent<CoinSystem>().totalCoinsInGame.ToString();
-            coinsText[1].text = "PURCHASED";
-        }
-        else // Se compra munición 
-        {
-            Debug.Log("Se intenta comprar municion por" + ammoPrices[gunsAmmoGeneratedIndexes[1]]);
-            if (player.GetComponent<CoinSystem>().totalCoinsInGame < ammoPrices[gunsAmmoGeneratedIndexes[1]]) return;
-            int ammoQ = ammoQuantity[gunsAmmoGeneratedIndexes[1]];
-            player.GetComponentInChildren<ShootSystem>().guns.getGuns()[gunsAmmoGeneratedIndexes[1]].AddAmmo(ammoQ);
-            player.GetComponent<CoinSystem>().SpendCoin(ammoPrices[gunsAmmoGeneratedIndexes[1]]);
-            shopCoins.text = player.GetComponent<CoinSystem>().totalCoinsInGame.ToString();
-        }
-    }
-    public void BuyGunAmmo3()
-    {
+    //            // Le quitamos el dinero
+    //            player.GetComponent<CoinSystem>().SpendCoin(gunPrices[gunsAmmoGeneratedIndexes[0]]);
+    //            shopCoins.text = player.GetComponent<CoinSystem>().totalCoinsInGame.ToString(); ;
+    //            coinsText[0].text = "PURCHASED";
+    //        }
+    //        else if (numGunsGenerated == 0) // Se comprará munición
+    //        {
+    //            Debug.Log("Se intenta comprar municion por" + ammoPrices[gunsAmmoGeneratedIndexes[0]]);
+    //            if (player.GetComponent<CoinSystem>().totalCoinsInGame < ammoPrices[gunsAmmoGeneratedIndexes[0]]) return;
+    //            int ammoQ = ammoQuantity[gunsAmmoGeneratedIndexes[0]];
+    //            player.GetComponentInChildren<ShootSystem>().guns.getGuns()[gunsAmmoGeneratedIndexes[0]].AddAmmo(ammoQ);
+    //            player.GetComponent<CoinSystem>().SpendCoin(ammoPrices[gunsAmmoGeneratedIndexes[0]]);
+    //            shopCoins.text = player.GetComponent<CoinSystem>().totalCoinsInGame.ToString(); ;
+    //        }
+    //    }
+    //    public void BuyGunAmmo2()
+    //    {
 
 
-        int numGunsHasAlreadyPlayer = 0;
-        bool[] playerHasGuns = player.GetComponentInChildren<ShootSystem>().availableGuns;
-        for (int i = 0; i < playerHasGuns.Length; i++)
-        {
-            if (playerHasGuns[i])
-            {
-                numGunsHasAlreadyPlayer++;
-            }
-        }
+    //        int numGunsHasAlreadyPlayer = 0;
+    //        bool[] playerHasGuns = player.GetComponentInChildren<ShootSystem>().availableGuns;
+    //        for (int i = 0; i < playerHasGuns.Length; i++)
+    //        {
+    //            if (playerHasGuns[i])
+    //            {
+    //                numGunsHasAlreadyPlayer++;
+    //            }
+    //        }
 
-        if (numGunsGenerated > 2) // Se compra un arma
-        {
-            Debug.Log("Se intenta comprar arma por" + gunPrices[gunsAmmoGeneratedIndexes[2]]);
-            if (player.GetComponent<CoinSystem>().totalCoinsInGame < gunPrices[gunsAmmoGeneratedIndexes[2]]) return;
+    //        if (numGunsGenerated > 1) // Se compra un arma
+    //        {
+    //            Debug.Log("Se intenta comprar arma por" + gunPrices[gunsAmmoGeneratedIndexes[1]]);
+    //            if (player.GetComponent<CoinSystem>().totalCoinsInGame < gunPrices[gunsAmmoGeneratedIndexes[1]]) return;
 
-            if (playerHasGuns[gunsAmmoGeneratedIndexes[2]]) return; // Si hemos comprado el arma y la tienda todavia no se ha actualizado, salimos del método
-            if (numGunsHasAlreadyPlayer == 3 && playerHasGuns[0]) // Si el jugador tiene 3 armas y una de ellas es la pistola, se sustituye la pistola por la nueva
-            {
-                player.GetComponentInChildren<ShootSystem>().DeactivateGun(0);
-            }
+    //            if (playerHasGuns[gunsAmmoGeneratedIndexes[1]]) return; // Si hemos comprado el arma y la tienda todavia no se ha actualizado, salimos del método
 
-            player.GetComponentInChildren<ShootSystem>().ActivateGun(gunsAmmoGeneratedIndexes[2]);
-            player.GetComponent<CoinSystem>().SpendCoin(gunPrices[gunsAmmoGeneratedIndexes[2]]);
-            shopCoins.text = player.GetComponent<CoinSystem>().totalCoinsInGame.ToString(); ;
-            coinsText[2].text = "PURCHASED";
-        }
-        else // Se compra munición
-        {
-            Debug.Log("Se intenta comprar municion por" + ammoPrices[gunsAmmoGeneratedIndexes[2]]);
-            if (player.GetComponent<CoinSystem>().totalCoinsInGame < ammoPrices[gunsAmmoGeneratedIndexes[2]]) return;
-            int ammoQ = ammoQuantity[gunsAmmoGeneratedIndexes[2]];
-            player.GetComponentInChildren<ShootSystem>().guns.getGuns()[gunsAmmoGeneratedIndexes[2]].AddAmmo(ammoQ);
-            player.GetComponent<CoinSystem>().SpendCoin(ammoPrices[gunsAmmoGeneratedIndexes[2]]);
-            shopCoins.text = player.GetComponent<CoinSystem>().totalCoinsInGame.ToString(); ;
-        }
-    }
-    public void BuyNewOldPerk1()
-    {
+    //            if (numGunsHasAlreadyPlayer == 3 && playerHasGuns[0]) // Si el jugador tiene 3 armas y una de ellas es la pistola, se sustituye la pistola por la nueva
+    //            {
+    //                player.GetComponentInChildren<ShootSystem>().DeactivateGun(0);
+    //            }
 
-        if (numNewPerksGenerated > 0)  // Se comprará una nueva ventaja
-        {
-            if (player.GetComponent<CoinSystem>().totalCoinsInGame < perkInitPrices[perksNewOldGeneratedIndexes[0]]) return;
-            BuyNewPerk(perksNewOldGeneratedIndexes[0], 0);
-        }
-        else if (numNewPerksGenerated == 0) // Se mejorará una ventaja
-        {
-            UpgradePerk(perksNewOldGeneratedIndexes[0], 0);
-        }
+    //            player.GetComponentInChildren<ShootSystem>().ActivateGun(gunsAmmoGeneratedIndexes[1]);
+    //            player.GetComponent<CoinSystem>().SpendCoin(gunPrices[gunsAmmoGeneratedIndexes[1]]);
+    //            shopCoins.text = player.GetComponent<CoinSystem>().totalCoinsInGame.ToString();
+    //            coinsText[1].text = "PURCHASED";
+    //        }
+    //        else // Se compra munición 
+    //        {
+    //            Debug.Log("Se intenta comprar municion por" + ammoPrices[gunsAmmoGeneratedIndexes[1]]);
+    //            if (player.GetComponent<CoinSystem>().totalCoinsInGame < ammoPrices[gunsAmmoGeneratedIndexes[1]]) return;
+    //            int ammoQ = ammoQuantity[gunsAmmoGeneratedIndexes[1]];
+    //            player.GetComponentInChildren<ShootSystem>().guns.getGuns()[gunsAmmoGeneratedIndexes[1]].AddAmmo(ammoQ);
+    //            player.GetComponent<CoinSystem>().SpendCoin(ammoPrices[gunsAmmoGeneratedIndexes[1]]);
+    //            shopCoins.text = player.GetComponent<CoinSystem>().totalCoinsInGame.ToString();
+    //        }
+    //    }
+    //    public void BuyGunAmmo3()
+    //    {
 
-    }
-    public void BuyNewOldPerk2()
-    {
-        if (numNewPerksGenerated > 1)
-        {
-            if (player.GetComponent<CoinSystem>().totalCoinsInGame < perkInitPrices[perksNewOldGeneratedIndexes[1]]) return;
-            BuyNewPerk(perksNewOldGeneratedIndexes[1], 1);
-        }
-        else
-        { // Se compra una mejora
-            UpgradePerk(perksNewOldGeneratedIndexes[1], 1);
-        }
-    }
-    public void BuyNewOldPerk3()
-    {
-        if (numNewPerksGenerated > 2) // Se compra una nueva ventaja
-        {
-            if (player.GetComponent<CoinSystem>().totalCoinsInGame < perkInitPrices[perksNewOldGeneratedIndexes[2]]) return;
-            BuyNewPerk(perksNewOldGeneratedIndexes[2], 2);
-        }
-        else // Se mejora la ventaja existente
-        {
-            UpgradePerk(perksNewOldGeneratedIndexes[2], 2);
-        }
-    }
 
-    private void BuyNewPerk(int idx, int place)
-    {
-        int numPerks = 0;
+    //        int numGunsHasAlreadyPlayer = 0;
+    //        bool[] playerHasGuns = player.GetComponentInChildren<ShootSystem>().availableGuns;
+    //        for (int i = 0; i < playerHasGuns.Length; i++)
+    //        {
+    //            if (playerHasGuns[i])
+    //            {
+    //                numGunsHasAlreadyPlayer++;
+    //            }
+    //        }
 
-        bool[] perksHasPlayer = player.GetComponentInChildren<PerksManager>().availablePerks;
-        for (int i = 0; i < perksHasPlayer.Length; i++) {
-            if (perksHasPlayer[i])
-                numPerks++;
-        }
+    //        if (numGunsGenerated > 2) // Se compra un arma
+    //        {
+    //            Debug.Log("Se intenta comprar arma por" + gunPrices[gunsAmmoGeneratedIndexes[2]]);
+    //            if (player.GetComponent<CoinSystem>().totalCoinsInGame < gunPrices[gunsAmmoGeneratedIndexes[2]]) return;
 
-        if (numPerks == 5) return; // Si el jugador ya tiene 5 ventajas no compra una nueva
-        if (player.GetComponentInChildren<PerksManager>().availablePerks[idx]) return; // Si la ventaja la acabamos de comprar, ya no lo podremos hacer más
-        switch (idx)
-        {
-            case 0:
-                player.GetComponentInChildren<PerksManager>().ActivateRapidFire();
-                player.GetComponent<CoinSystem>().SpendCoin(perkInitPrices[0]);
-                perksUI[numPerksPurchased].sprite = spritesPerks[0];
-                break;
-            case 1:
-                player.GetComponentInChildren<PerksManager>().ActivateLaserShot();
-                player.GetComponent<CoinSystem>().SpendCoin(perkInitPrices[1]);
-                perksUI[numPerksPurchased].sprite = spritesPerks[1];
-                break;
-            case 2:
-                player.GetComponentInChildren<PerksManager>().ActivateBigShot();
-                player.GetComponent<CoinSystem>().SpendCoin(perkInitPrices[2]);
-                perksUI[numPerksPurchased].sprite = spritesPerks[2];
-                break;
-            case 3:
-                player.GetComponentInChildren<PerksManager>().ActivateTacticVest();
-                player.GetComponent<CoinSystem>().SpendCoin(perkInitPrices[3]);
-                player.GetComponent<Health>().UpdateLifeUI();
-                perksUI[numPerksPurchased].sprite = spritesPerks[3];
-                break;
-            case 4:
-                player.GetComponentInChildren<PerksManager>().ActivateTacticalBoots();
-                player.GetComponent<CoinSystem>().SpendCoin(perkInitPrices[4]);
-                perksUI[numPerksPurchased].sprite = spritesPerks[4];
-                break;
-            case 5:
-                player.GetComponentInChildren<PerksManager>().ActivateMedic();
-                player.GetComponent<CoinSystem>().SpendCoin(perkInitPrices[5]);
-                perksUI[numPerksPurchased].sprite = spritesPerks[5];
-                break;
-            case 6:
-                player.GetComponentInChildren<PerksManager>().ActivateElectricalBarrier();
-                player.GetComponent<CoinSystem>().SpendCoin(perkInitPrices[6]);
-                perksUI[numPerksPurchased].sprite = spritesPerks[6];
-                break;
-            case 7:
-                player.GetComponentInChildren<PerksManager>().ActivateGunsmith();
-                player.GetComponent<CoinSystem>().SpendCoin(perkInitPrices[7]);
-                perksUI[numPerksPurchased].sprite = spritesPerks[7];
-                break;
-            default:
-                break;
-        }
+    //            if (playerHasGuns[gunsAmmoGeneratedIndexes[2]]) return; // Si hemos comprado el arma y la tienda todavia no se ha actualizado, salimos del método
+    //            if (numGunsHasAlreadyPlayer == 3 && playerHasGuns[0]) // Si el jugador tiene 3 armas y una de ellas es la pistola, se sustituye la pistola por la nueva
+    //            {
+    //                player.GetComponentInChildren<ShootSystem>().DeactivateGun(0);
+    //            }
 
-        shopCoins.text = player.GetComponent<CoinSystem>().totalCoinsInGame.ToString();
+    //            player.GetComponentInChildren<ShootSystem>().ActivateGun(gunsAmmoGeneratedIndexes[2]);
+    //            player.GetComponent<CoinSystem>().SpendCoin(gunPrices[gunsAmmoGeneratedIndexes[2]]);
+    //            shopCoins.text = player.GetComponent<CoinSystem>().totalCoinsInGame.ToString(); ;
+    //            coinsText[2].text = "PURCHASED";
+    //        }
+    //        else // Se compra munición
+    //        {
+    //            Debug.Log("Se intenta comprar municion por" + ammoPrices[gunsAmmoGeneratedIndexes[2]]);
+    //            if (player.GetComponent<CoinSystem>().totalCoinsInGame < ammoPrices[gunsAmmoGeneratedIndexes[2]]) return;
+    //            int ammoQ = ammoQuantity[gunsAmmoGeneratedIndexes[2]];
+    //            player.GetComponentInChildren<ShootSystem>().guns.getGuns()[gunsAmmoGeneratedIndexes[2]].AddAmmo(ammoQ);
+    //            player.GetComponent<CoinSystem>().SpendCoin(ammoPrices[gunsAmmoGeneratedIndexes[2]]);
+    //            shopCoins.text = player.GetComponent<CoinSystem>().totalCoinsInGame.ToString(); ;
+    //        }
+    //    }
+    //    public void BuyNewOldPerk1()
+    //    {
 
-        coinsText[3 + place].text = "PURCHASED";
-        perksUI[numPerksPurchased].color += new Color(0, 0, 0, 1);
-        numPerksPurchased++;
-    }
-    private void UpgradePerk(int idx, int place)
-    {
-        int lvl = 0;
+    //        if (numNewPerksGenerated > 0)  // Se comprará una nueva ventaja
+    //        {
+    //            if (player.GetComponent<CoinSystem>().totalCoinsInGame < perkInitPrices[perksNewOldGeneratedIndexes[0]]) return;
+    //            BuyNewPerk(perksNewOldGeneratedIndexes[0], 0);
+    //        }
+    //        else if (numNewPerksGenerated == 0) // Se mejorará una ventaja
+    //        {
+    //            UpgradePerk(perksNewOldGeneratedIndexes[0], 0);
+    //        }
 
-        switch (idx)
-        {
-            case 0:
-                lvl = player.GetComponentInChildren<PerksManager>().perkLevels[0];
-                if (lvl == 4) return;
-                if (player.GetComponent<CoinSystem>().totalCoinsInGame < rapidFirePrices[lvl]) return;
-                player.GetComponentInChildren<PerksManager>().UpgradeRapidFire();
-                player.GetComponent<CoinSystem>().SpendCoin(rapidFirePrices[lvl]);
+    //    }
+    //    public void BuyNewOldPerk2()
+    //    {
+    //        if (numNewPerksGenerated > 1)
+    //        {
+    //            if (player.GetComponent<CoinSystem>().totalCoinsInGame < perkInitPrices[perksNewOldGeneratedIndexes[1]]) return;
+    //            BuyNewPerk(perksNewOldGeneratedIndexes[1], 1);
+    //        }
+    //        else
+    //        { // Se compra una mejora
+    //            UpgradePerk(perksNewOldGeneratedIndexes[1], 1);
+    //        }
+    //    }
+    //    public void BuyNewOldPerk3()
+    //    {
+    //        if (numNewPerksGenerated > 2) // Se compra una nueva ventaja
+    //        {
+    //            if (player.GetComponent<CoinSystem>().totalCoinsInGame < perkInitPrices[perksNewOldGeneratedIndexes[2]]) return;
+    //            BuyNewPerk(perksNewOldGeneratedIndexes[2], 2);
+    //        }
+    //        else // Se mejora la ventaja existente
+    //        {
+    //            UpgradePerk(perksNewOldGeneratedIndexes[2], 2);
+    //        }
+    //    }
 
-                // Si con la subida de nivel alcanza el máximo. Eso es, cuando es nivel 3 y entramos en este método haciendo que suba al máximo.
-                if(lvl == 3)
-                    UpdateUi(place, perksTexts[idx], "MAX. LVL");
-                else
-                    UpdateUi(place, perksTexts[idx], (rapidFirePrices[lvl + 1]).ToString());
-                break;
-            case 1:
-                lvl = player.GetComponentInChildren<PerksManager>().perkLevels[1];
-                if (lvl == 4) return; // Si ya esta al máximo nivel, salimos del método
-                if (player.GetComponent<CoinSystem>().totalCoinsInGame < laserShotPrices[lvl]) return;
-                player.GetComponentInChildren<PerksManager>().UpgradeLaserShot();
-                player.GetComponent<CoinSystem>().SpendCoin(laserShotPrices[lvl]);
+    //    private void BuyNewPerk(int idx, int place)
+    //    {
+    //        int numPerks = 0;
 
-                // Si con la subida de nivel alcanza el máximo
-                if (lvl == 3)
-                    UpdateUi(place, perksTexts[idx], "MAX. LVL");
-                else
-                    UpdateUi(place, perksTexts[idx], (laserShotPrices[lvl + 1]).ToString());
-                break;
-            case 2:
-                lvl = player.GetComponentInChildren<PerksManager>().perkLevels[2];
-                if (lvl == 4) return;// Si ya esta al máximo nivel, salimos del método
-                if (player.GetComponent<CoinSystem>().totalCoinsInGame < bigShotPrices[lvl]) return;
-                player.GetComponentInChildren<PerksManager>().UpgradeBigShot();
-                player.GetComponent<CoinSystem>().SpendCoin(bigShotPrices[lvl]);
+    //        bool[] perksHasPlayer = player.GetComponentInChildren<PerksManager>().availablePerks;
+    //        for (int i = 0; i < perksHasPlayer.Length; i++)
+    //        {
+    //            if (perksHasPlayer[i])
+    //                numPerks++;
+    //        }
 
-                // Si con la subida de nivel alcanza el máximo
-                if (lvl == 3)
-                    UpdateUi(place, perksTexts[idx], "MAX. LVL");
-                else
-                    UpdateUi(place, perksTexts[idx], (bigShotPrices[lvl + 1]).ToString());
-                break;
-            case 3:
-                lvl = player.GetComponentInChildren<PerksManager>().perkLevels[3];
-                if (lvl == 4) return;// Si ya esta al máximo nivel, salimos del método
-                if (player.GetComponent<CoinSystem>().totalCoinsInGame < tacticVestPrices[lvl]) return;
-                player.GetComponentInChildren<PerksManager>().UpgradeTacticVest();
-                player.GetComponent<CoinSystem>().SpendCoin(tacticVestPrices[lvl]);
-                player.GetComponent<Health>().UpdateLifeUI();
+    //        if (numPerks == 5) return; // Si el jugador ya tiene 5 ventajas no compra una nueva
+    //        if (player.GetComponentInChildren<PerksManager>().availablePerks[idx]) return; // Si la ventaja la acabamos de comprar, ya no lo podremos hacer más
+    //        switch (idx)
+    //        {
+    //            case 0:
+    //                player.GetComponentInChildren<PerksManager>().ActivateRapidFire();
+    //                player.GetComponent<CoinSystem>().SpendCoin(perkInitPrices[0]);
+    //                perksUI[numPerksPurchased].sprite = spritesPerks[0];
+    //                break;
+    //            case 1:
+    //                player.GetComponentInChildren<PerksManager>().ActivateLaserShot();
+    //                player.GetComponent<CoinSystem>().SpendCoin(perkInitPrices[1]);
+    //                perksUI[numPerksPurchased].sprite = spritesPerks[1];
+    //                break;
+    //            case 2:
+    //                player.GetComponentInChildren<PerksManager>().ActivateBigShot();
+    //                player.GetComponent<CoinSystem>().SpendCoin(perkInitPrices[2]);
+    //                perksUI[numPerksPurchased].sprite = spritesPerks[2];
+    //                break;
+    //            case 3:
+    //                player.GetComponentInChildren<PerksManager>().ActivateTacticVest();
+    //                player.GetComponent<CoinSystem>().SpendCoin(perkInitPrices[3]);
+    //                player.GetComponent<Health>().UpdateLifeUI();
+    //                perksUI[numPerksPurchased].sprite = spritesPerks[3];
+    //                break;
+    //            case 4:
+    //                player.GetComponentInChildren<PerksManager>().ActivateTacticalBoots();
+    //                player.GetComponent<CoinSystem>().SpendCoin(perkInitPrices[4]);
+    //                perksUI[numPerksPurchased].sprite = spritesPerks[4];
+    //                break;
+    //            case 5:
+    //                player.GetComponentInChildren<PerksManager>().ActivateMedic();
+    //                player.GetComponent<CoinSystem>().SpendCoin(perkInitPrices[5]);
+    //                perksUI[numPerksPurchased].sprite = spritesPerks[5];
+    //                break;
+    //            case 6:
+    //                player.GetComponentInChildren<PerksManager>().ActivateElectricalBarrier();
+    //                player.GetComponent<CoinSystem>().SpendCoin(perkInitPrices[6]);
+    //                perksUI[numPerksPurchased].sprite = spritesPerks[6];
+    //                break;
+    //            case 7:
+    //                player.GetComponentInChildren<PerksManager>().ActivateGunsmith();
+    //                player.GetComponent<CoinSystem>().SpendCoin(perkInitPrices[7]);
+    //                perksUI[numPerksPurchased].sprite = spritesPerks[7];
+    //                break;
+    //            default:
+    //                break;
+    //        }
 
-                // Si con la subida de nivel alcanza el máximo
-                if (lvl == 3)
-                    UpdateUi(place, perksTexts[idx], "MAX. LVL");
-                else
-                    UpdateUi(place, perksTexts[idx], (tacticVestPrices[lvl + 1]).ToString());
-                break;
-            case 4:
-                lvl = player.GetComponentInChildren<PerksManager>().perkLevels[4];
-                if (lvl == 4) return;// Si ya esta al máximo nivel, salimos del método
-                if (player.GetComponent<CoinSystem>().totalCoinsInGame < tacticalBootsPrices[lvl]) return;
-                player.GetComponentInChildren<PerksManager>().UpgradeTacticalBoots();
-                player.GetComponent<CoinSystem>().SpendCoin(tacticalBootsPrices[lvl]);
+    //        shopCoins.text = player.GetComponent<CoinSystem>().totalCoinsInGame.ToString();
 
-                // Si con la subida de nivel alcanza el máximo
-                if (lvl == 3)
-                    UpdateUi(place, perksTexts[idx], "MAX. LVL");
-                else
-                    UpdateUi(place, perksTexts[idx], (tacticalBootsPrices[lvl + 1]).ToString());
-                break;
-            case 5:
-                lvl = player.GetComponentInChildren<PerksManager>().perkLevels[5];
-                if (lvl == 4) return;// Si ya esta al máximo nivel, salimos del método
-                if (player.GetComponent<CoinSystem>().totalCoinsInGame < medicPrices[lvl]) return;
-                player.GetComponentInChildren<PerksManager>().UpgradeMedic();
-                player.GetComponent<CoinSystem>().SpendCoin(medicPrices[lvl]);
+    //        coinsText[3 + place].text = "PURCHASED";
+    //        perksUI[numPerksPurchased].color += new Color(0, 0, 0, 1);
+    //        numPerksPurchased++;
+    //    }
+    //    private void UpgradePerk(int idx, int place)
+    //    {
+    //        int lvl = 0;
 
-                // Si con la subida de nivel alcanza el máximo
-                if (lvl == 3)
-                    UpdateUi(place, perksTexts[idx], "MAX. LVL");
-                else
-                    UpdateUi(place, perksTexts[idx], (medicPrices[lvl + 1]).ToString());
-                break;
-            case 6:
-                lvl = player.GetComponentInChildren<PerksManager>().perkLevels[6];
-                if (lvl == 4) return;// Si ya esta al máximo nivel, salimos del método
-                if (player.GetComponent<CoinSystem>().totalCoinsInGame < electricalBarrierPrices[lvl]) return;
-                player.GetComponentInChildren<PerksManager>().UpgradeElectricalBarrier();
-                player.GetComponent<CoinSystem>().SpendCoin(electricalBarrierPrices[lvl]);
+    //        switch (idx)
+    //        {
+    //            case 0:
+    //                lvl = player.GetComponentInChildren<PerksManager>().perkLevels[0];
+    //                if (lvl == 4) return;
+    //                if (player.GetComponent<CoinSystem>().totalCoinsInGame < rapidFirePrices[lvl]) return;
+    //                player.GetComponentInChildren<PerksManager>().UpgradeRapidFire();
+    //                player.GetComponent<CoinSystem>().SpendCoin(rapidFirePrices[lvl]);
 
-                // Si con la subida de nivel alcanza el máximo
-                if (lvl == 3)
-                    UpdateUi(place, perksTexts[idx], "MAX. LVL");
-                else
-                    UpdateUi(place, perksTexts[idx], (electricalBarrierPrices[lvl + 1]).ToString());
-                break;
-            case 7:
-                lvl = player.GetComponentInChildren<PerksManager>().perkLevels[7];
-                if (lvl == 4) return;// Si ya esta al máximo nivel, salimos del método
-                if (player.GetComponent<CoinSystem>().totalCoinsInGame < gunsmithPrices[lvl]) return;
-                player.GetComponentInChildren<PerksManager>().UpgradeGunsmith();
-                player.GetComponent<CoinSystem>().SpendCoin(gunsmithPrices[lvl]);
+    //                // Si con la subida de nivel alcanza el máximo. Eso es, cuando es nivel 3 y entramos en este método haciendo que suba al máximo.
+    //                if (lvl == 3)
+    //                    UpdateUi(place, perksTexts[idx], "MAX. LVL");
+    //                else
+    //                    UpdateUi(place, perksTexts[idx], (rapidFirePrices[lvl + 1]).ToString());
+    //                break;
+    //            case 1:
+    //                lvl = player.GetComponentInChildren<PerksManager>().perkLevels[1];
+    //                if (lvl == 4) return; // Si ya esta al máximo nivel, salimos del método
+    //                if (player.GetComponent<CoinSystem>().totalCoinsInGame < laserShotPrices[lvl]) return;
+    //                player.GetComponentInChildren<PerksManager>().UpgradeLaserShot();
+    //                player.GetComponent<CoinSystem>().SpendCoin(laserShotPrices[lvl]);
 
-                // Si con la subida de nivel alcanza el máximo
-                if (lvl == 3)
-                    UpdateUi(place, perksTexts[idx], "MAX. LVL");
-                else
-                    UpdateUi(place, perksTexts[idx], (gunsmithPrices[lvl + 1]).ToString());
-                break;
-            default:
-                break;
-        }
-    }
+    //                // Si con la subida de nivel alcanza el máximo
+    //                if (lvl == 3)
+    //                    UpdateUi(place, perksTexts[idx], "MAX. LVL");
+    //                else
+    //                    UpdateUi(place, perksTexts[idx], (laserShotPrices[lvl + 1]).ToString());
+    //                break;
+    //            case 2:
+    //                lvl = player.GetComponentInChildren<PerksManager>().perkLevels[2];
+    //                if (lvl == 4) return;// Si ya esta al máximo nivel, salimos del método
+    //                if (player.GetComponent<CoinSystem>().totalCoinsInGame < bigShotPrices[lvl]) return;
+    //                player.GetComponentInChildren<PerksManager>().UpgradeBigShot();
+    //                player.GetComponent<CoinSystem>().SpendCoin(bigShotPrices[lvl]);
 
-    private void UpdateUi(int place, string tT, string cT) {
-        titleText[place + 3].text = tT;
-        displaysPerks[place].sprite = spritesPerks[perksNewOldGeneratedIndexes[place]];
-        coinsText[place + 3].text = cT;
-        shopCoins.text = player.GetComponent<CoinSystem>().totalCoinsInGame.ToString();
-    }
+    //                // Si con la subida de nivel alcanza el máximo
+    //                if (lvl == 3)
+    //                    UpdateUi(place, perksTexts[idx], "MAX. LVL");
+    //                else
+    //                    UpdateUi(place, perksTexts[idx], (bigShotPrices[lvl + 1]).ToString());
+    //                break;
+    //            case 3:
+    //                lvl = player.GetComponentInChildren<PerksManager>().perkLevels[3];
+    //                if (lvl == 4) return;// Si ya esta al máximo nivel, salimos del método
+    //                if (player.GetComponent<CoinSystem>().totalCoinsInGame < tacticVestPrices[lvl]) return;
+    //                player.GetComponentInChildren<PerksManager>().UpgradeTacticVest();
+    //                player.GetComponent<CoinSystem>().SpendCoin(tacticVestPrices[lvl]);
+    //                player.GetComponent<Health>().UpdateLifeUI();
+
+    //                // Si con la subida de nivel alcanza el máximo
+    //                if (lvl == 3)
+    //                    UpdateUi(place, perksTexts[idx], "MAX. LVL");
+    //                else
+    //                    UpdateUi(place, perksTexts[idx], (tacticVestPrices[lvl + 1]).ToString());
+    //                break;
+    //            case 4:
+    //                lvl = player.GetComponentInChildren<PerksManager>().perkLevels[4];
+    //                if (lvl == 4) return;// Si ya esta al máximo nivel, salimos del método
+    //                if (player.GetComponent<CoinSystem>().totalCoinsInGame < tacticalBootsPrices[lvl]) return;
+    //                player.GetComponentInChildren<PerksManager>().UpgradeTacticalBoots();
+    //                player.GetComponent<CoinSystem>().SpendCoin(tacticalBootsPrices[lvl]);
+
+    //                // Si con la subida de nivel alcanza el máximo
+    //                if (lvl == 3)
+    //                    UpdateUi(place, perksTexts[idx], "MAX. LVL");
+    //                else
+    //                    UpdateUi(place, perksTexts[idx], (tacticalBootsPrices[lvl + 1]).ToString());
+    //                break;
+    //            case 5:
+    //                lvl = player.GetComponentInChildren<PerksManager>().perkLevels[5];
+    //                if (lvl == 4) return;// Si ya esta al máximo nivel, salimos del método
+    //                if (player.GetComponent<CoinSystem>().totalCoinsInGame < medicPrices[lvl]) return;
+    //                player.GetComponentInChildren<PerksManager>().UpgradeMedic();
+    //                player.GetComponent<CoinSystem>().SpendCoin(medicPrices[lvl]);
+
+    //                // Si con la subida de nivel alcanza el máximo
+    //                if (lvl == 3)
+    //                    UpdateUi(place, perksTexts[idx], "MAX. LVL");
+    //                else
+    //                    UpdateUi(place, perksTexts[idx], (medicPrices[lvl + 1]).ToString());
+    //                break;
+    //            case 6:
+    //                lvl = player.GetComponentInChildren<PerksManager>().perkLevels[6];
+    //                if (lvl == 4) return;// Si ya esta al máximo nivel, salimos del método
+    //                if (player.GetComponent<CoinSystem>().totalCoinsInGame < electricalBarrierPrices[lvl]) return;
+    //                player.GetComponentInChildren<PerksManager>().UpgradeElectricalBarrier();
+    //                player.GetComponent<CoinSystem>().SpendCoin(electricalBarrierPrices[lvl]);
+
+    //                // Si con la subida de nivel alcanza el máximo
+    //                if (lvl == 3)
+    //                    UpdateUi(place, perksTexts[idx], "MAX. LVL");
+    //                else
+    //                    UpdateUi(place, perksTexts[idx], (electricalBarrierPrices[lvl + 1]).ToString());
+    //                break;
+    //            case 7:
+    //                lvl = player.GetComponentInChildren<PerksManager>().perkLevels[7];
+    //                if (lvl == 4) return;// Si ya esta al máximo nivel, salimos del método
+    //                if (player.GetComponent<CoinSystem>().totalCoinsInGame < gunsmithPrices[lvl]) return;
+    //                player.GetComponentInChildren<PerksManager>().UpgradeGunsmith();
+    //                player.GetComponent<CoinSystem>().SpendCoin(gunsmithPrices[lvl]);
+
+    //                // Si con la subida de nivel alcanza el máximo
+    //                if (lvl == 3)
+    //                    UpdateUi(place, perksTexts[idx], "MAX. LVL");
+    //                else
+    //                    UpdateUi(place, perksTexts[idx], (gunsmithPrices[lvl + 1]).ToString());
+    //                break;
+    //            default:
+    //                break;
+    //        }
+    //    }
+
+    //    private void UpdateUi(int place, string tT, string cT)
+    //    {
+    //        titleText[place + 3].text = tT;
+    //        displaysPerks[place].sprite = spritesPerks[perksNewOldGeneratedIndexes[place]];
+    //        coinsText[place + 3].text = cT;
+    //        shopCoins.text = player.GetComponent<CoinSystem>().totalCoinsInGame.ToString();
+    //    }
+    //}
 }

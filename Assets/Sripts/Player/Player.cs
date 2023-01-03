@@ -67,7 +67,6 @@ public class Player : MonoBehaviour
             desktop = true;
         }
 
-        //desktop = false;
 
         // Input actions
         playerInputActions = new PlayerInputActions();
@@ -130,14 +129,12 @@ public class Player : MonoBehaviour
         }
 
         Move();
-        if (desktop)
-        {
-            Aim();
-        }
-        else
-        {
+
+        if (!desktop)
             MobileAim();
-        }
+        else
+            Aim();
+
 
     }
 
@@ -230,11 +227,9 @@ public class Player : MonoBehaviour
 
     public void PauseMenuCall(InputAction.CallbackContext context)
     {
-        // Solo se puede pausar el juego si el jugador no se encuantra disparando
-        if (!shootingSystem.shooting && !uiGestor.shooping)
-        {
-            PauseMenu.TriggerPause = true;
-        }
+
+        PauseMenu.TriggerPause = true;
+
     }
 
     private void Move()
@@ -306,10 +301,9 @@ public class Player : MonoBehaviour
 
     private void ReloadGun(InputAction.CallbackContext context)
     {
-        if (!PauseMenu.GameIsPaused && !uiGestor.shooping)
-        {
-            shootingSystem.Reload();
-        }
+        
+            //shootingSystem.Reload();
+        
     }
 
     private void SwapGun(InputAction.CallbackContext context)
@@ -320,19 +314,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OpenShop(InputAction.CallbackContext context)
-    {
-        // Se puede acceder a la tienda si el jugador no se encuentra disparando
-        if (!PauseMenu.GameIsPaused && shopInRange && !shootingSystem.shooting && shopActive)
-        {
-            // Abrir tienda
-            //Debug.Log("Se abre la tienda");
-            GameObject.Find("InGameMusic").GetComponent<InGameMusicManager>().PlayShopMusic();
 
-            CachedMoveInput = new Vector2(0.0f, 0.0f);
-            uiGestor.ShowShop();
-        }
-    }
 
     private void OnEnable()
     {
@@ -343,15 +325,14 @@ public class Player : MonoBehaviour
         {
             //desktop = true;
 
-            playerInputActions.Player.Shoot.performed += Shoot;
-            playerInputActions.Player.Shoot.canceled += ResetShoot;
+            //playerInputActions.Player.Shoot.performed += Shoot;
+            //playerInputActions.Player.Shoot.canceled += ResetShoot;
             playerInputActions.Player.Movement.performed += Movement;
             playerInputActions.Player.Movement.canceled += ResetMovement;
             playerInputActions.Player.Aim.performed += MousePosition;
-            playerInputActions.Player.Pause.performed += PauseMenuCall;
-            playerInputActions.Player.Recharge.performed += ReloadGun;
+            //playerInputActions.Player.Pause.performed += PauseMenuCall;
+            //playerInputActions.Player.Recharge.performed += ReloadGun;
             playerInputActions.Player.SwapGun.performed += SwapGun;
-            playerInputActions.Player.Shop.performed += OpenShop;
         }
         else
         {
@@ -362,10 +343,9 @@ public class Player : MonoBehaviour
             //playerInputActions.Player.MobileAim.performed += MousePosition;
             //playerInputActions.Player.MobileAim.canceled += ResetShoot;
             //playerInputActions.Player.MobileAim.canceled += ResetAim;
-            playerInputActions.Player.Recharge.performed += ReloadGun;
+            //playerInputActions.Player.Recharge.performed += ReloadGun;
             playerInputActions.Player.SwapGun.performed += SwapGun;
             playerInputActions.Player.Pause.performed += PauseMenuCall;
-            playerInputActions.Player.Shop.performed += OpenShop;
         }
     }
 
@@ -373,15 +353,14 @@ public class Player : MonoBehaviour
     {
         if (desktop)
         {
-            playerInputActions.Player.Shoot.performed -= Shoot;
-            playerInputActions.Player.Shoot.canceled -= ResetShoot;
+            //playerInputActions.Player.Shoot.performed -= Shoot;
+            //playerInputActions.Player.Shoot.canceled -= ResetShoot;
             playerInputActions.Player.Movement.performed -= Movement;
             playerInputActions.Player.Movement.canceled -= ResetMovement;
             playerInputActions.Player.Aim.performed -= MousePosition;
-            playerInputActions.Player.Pause.performed -= PauseMenuCall;
-            playerInputActions.Player.Recharge.performed -= ReloadGun;
+            //playerInputActions.Player.Pause.performed -= PauseMenuCall;
+            //playerInputActions.Player.Recharge.performed -= ReloadGun;
             playerInputActions.Player.SwapGun.performed -= SwapGun;
-            playerInputActions.Player.Shop.performed -= OpenShop;
         }
         else
         {
@@ -390,10 +369,9 @@ public class Player : MonoBehaviour
             //playerInputActions.Player.MobileAim.performed -= MousePosition;
             //playerInputActions.Player.MobileAim.canceled -= ResetShoot;
             //playerInputActions.Player.MobileAim.canceled -= ResetAim;
-            playerInputActions.Player.Recharge.performed -= ReloadGun;
+            //playerInputActions.Player.Recharge.performed -= ReloadGun;
             playerInputActions.Player.SwapGun.performed -= SwapGun;
             playerInputActions.Player.Pause.performed -= PauseMenuCall;
-            playerInputActions.Player.Shop.performed -= OpenShop;
         }
     }
 

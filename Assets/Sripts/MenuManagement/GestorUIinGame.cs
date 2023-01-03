@@ -17,6 +17,14 @@ public class GestorUIinGame : MonoBehaviour
     private GameObject shopUI;
     [SerializeField]
     private GameObject finPartida;
+    [SerializeField]
+    private Alarm alarmSystem;
+    [SerializeField]
+    private TextMeshProUGUI alertText;
+    [SerializeField]
+    private TextMeshProUGUI alertTime;
+    [SerializeField]
+    private TextMeshProUGUI coinCounter;
 
     private bool desktop = true;
 
@@ -32,37 +40,15 @@ public class GestorUIinGame : MonoBehaviour
 
     void Start()
     {
-        // Cursor
-        cursorHotSpot = new Vector2(0, 0);
+        alarmSystem.onStartAlarm += ActivateAlertDisplay;
+        alarmSystem.onStopAlarm += DectivateAlertDisplay;
+        alarmSystem.onTimeUpdated += UpdateAlertTime;
+
+        DectivateAlertDisplay();
     }
 
-    public void ShowShop() { 
-        shopUI.SetActive(true);
-        Time.timeScale = 0.0f;
-        shooping = true;
 
 
-        mobileUI.SetActive(false);
-
-        shopCoins.text = GameObject.FindGameObjectWithTag("Player").GetComponent<CoinSystem>().totalCoinsInGame.ToString();
-
-        // Cursor
-        //if (desktop)
-        //    Cursor.SetCursor(cursorSprite, cursorHotSpot, CursorMode.ForceSoftware);
-    }
-
-    public void HideShop() { 
-        shopUI.SetActive(false);
-        Time.timeScale = 1.0f;
-        shooping = false;
-
-
-        mobileUI.SetActive(true);
-
-        // Cursor
-        //if(desktop)
-        //    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<ShootSystem>().ChangeCursorBack();
-    }
 
     //public void FinishGame(int min, int secs, int bHit, int bMissed, int goldEarned, int defeatedEnemies) {
     //    Time.timeScale = 0.0f;
@@ -97,25 +83,48 @@ public class GestorUIinGame : MonoBehaviour
     //    }
     //}
 
-    public void Pause() {
+    public void Pause()
+    {
         mobileUI?.SetActive(false);
         pauseUI?.SetActive(true);
         Time.timeScale = 0.0f;
     }
-    public void Unpause() { 
+    public void Unpause()
+    {
         Time.timeScale = 1.0f;
         pauseUI?.SetActive(false);
         mobileUI?.SetActive(true);
     }
 
-    public void Retry() {
+    public void Retry()
+    {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
         Time.timeScale = 1.0f;
     }
 
-    public void GoBackMainMenu() {
+    public void GoBackMainMenu()
+    {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("MainMenu");
+    }
+    public void UpdateCoinNumber(int n)
+    {
+        coinCounter.text = n + " / 3";
+
+    }
+    public void UpdateAlertTime(float n)
+    {
+        alertTime.text = (int)n + " s";
+    }
+    public void ActivateAlertDisplay(Vector3 v)
+    {
+        alertText.enabled = true;
+        alertTime.enabled = true;
+    }
+    public void DectivateAlertDisplay()
+    {
+        alertText.enabled = false;
+        alertTime.enabled = false;
     }
 }

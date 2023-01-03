@@ -26,7 +26,7 @@ public class NoGunsMode : MonoBehaviour
     }
 
     private void AddCoins() {
-        player.GetComponent<CoinSystem>().AddCoin(10);
+        player.GetComponent<CoinSystem>().AddCoin();
         Invoke("AddCoins", 10);
     }
 }
