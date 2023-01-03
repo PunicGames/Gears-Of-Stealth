@@ -82,7 +82,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetAntialiassing(int option)
     {
         PlayerPrefs.SetInt("antialiasing", option);
-        gm.SetAntialiassing(option);
+        //gm.SetAntialiassing(option);
 
     }
 
