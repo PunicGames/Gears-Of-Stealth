@@ -7,36 +7,25 @@ using UnityEngine.UI;
 public class CoinSystem : MonoBehaviour
 {
     public int totalCoinsInGame;
+    private readonly int MAX_COINS = 3;
 
     // Display coin
-    private TextMeshProUGUI coinDisplay;
-
-    // PopUp
-    private PopUp popup;
-    [SerializeField] private Transform popupPosition;
+    private GestorUIinGame UIDisplay;
 
     // Player Stats
-    [SerializeField] private PlayerStats playerStats;
 
     void Start()
     {
         totalCoinsInGame = 0;
-        coinDisplay = GameObject.Find("CoinCounter").GetComponent<TextMeshProUGUI>();
-        popup = GetComponent<PopUp>();
+        UIDisplay = FindObjectOfType<GestorUIinGame>();
     }
 
-    public void AddCoin(int newCoin) {
-        totalCoinsInGame += newCoin;
-        coinDisplay.text = totalCoinsInGame.ToString();
-        popup.Create(popupPosition.position, newCoin, PopUp.TypePopUp.MONEY, true, 0.5f);
-        playerStats.numGoldEarned += newCoin;
-    }
-
-    public void SpendCoin(int newCoin)
+    public void AddCoin()
     {
-        totalCoinsInGame -= newCoin;
-        coinDisplay.text = totalCoinsInGame.ToString();
-        popup.Create(popupPosition.position, newCoin, PopUp.TypePopUp.MONEY, false, 0.5f);
-        GameObject.Find("MenuMusic").GetComponent<ButtonSFX>().PlayBuy();
+        if (totalCoinsInGame < MAX_COINS)
+            totalCoinsInGame++;
+        UIDisplay.UpdateCoinNumber(totalCoinsInGame);
     }
+
+
 }

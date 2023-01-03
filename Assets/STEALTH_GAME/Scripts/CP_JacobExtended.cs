@@ -25,11 +25,18 @@ public class CP_JacobExtended : MonoBehaviour
         playerInputActions.Player.Crouch.performed += Crouch;
         playerInputActions.Player.Crouch.canceled += Crouch;
         playerInputActions.Player.Pause.performed += PauseMenuCall;
+        playerInputActions.Player.Recharge.performed += ReloadGun;
 
+        GetComponent<Player>().footSteps.volume = 1f;
+        GetComponent<Player>().footSteps.pitch = 1;
+        isCrouching = false;
+        GetComponent<Animator>().SetBool("isCrouching", false);
 
         shoot_sys.onShootWeapon += ShootSound;
         emitter = GetComponent<SoundEmitter>();
         emitter.radius = shootSoundRadius;
+
+
     }
 
     private void Update()
@@ -71,7 +78,12 @@ public class CP_JacobExtended : MonoBehaviour
 
         }
     }
+    private void ReloadGun(InputAction.CallbackContext context)
+    {
 
+        shoot_sys.Reload();
+
+    }
     public void ResetShoot(InputAction.CallbackContext context)
     {
         if (!PauseMenu.GameIsPaused)
@@ -101,5 +113,24 @@ public class CP_JacobExtended : MonoBehaviour
 
     }
 
+    public void Crouch()
+    {
+        if (!isCrouching)
+        {
+            GetComponent<Player>().footSteps.volume = 0.25f;
+            GetComponent<Player>().footSteps.pitch = .69f;
+            GetComponent<Player>().speed *= .5f;
+            isCrouching = true;
+            GetComponent<Animator>().SetBool("isCrouching", true);
+        }
+        else
+        {
+            GetComponent<Player>().footSteps.volume = 1f;
+            GetComponent<Player>().footSteps.pitch = 1;
+            GetComponent<Player>().speed *= 2f;
+            isCrouching = false;
+            GetComponent<Animator>().SetBool("isCrouching", false);
+        }
 
+    }
 }

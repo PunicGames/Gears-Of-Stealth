@@ -46730,6 +46730,7 @@ GameObject:
   - component: {fileID: 4180880843841280077}
   - component: {fileID: 5460775130313560205}
   - component: {fileID: 5627487526162282460}
+  - component: {fileID: 1585553159527981007}
   m_Layer: 6
   m_Name: Stealth_JACOB
   m_TagString: Player
@@ -47009,6 +47010,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4135c722bdb0d4891a358134ba40cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finPartidaUI: {fileID: 0}
+  controlerUI: {fileID: 0}
   normalMode: 1
   maxHealth: 100
   currentHealth: 0
@@ -47419,6 +47422,20 @@ MonoBehaviour:
   shootSoundRadius: 3.5
   crouchSoundRadius: 1.5
   walkSoundRadius: 6
+--- !u!114 &1585553159527981007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7872201523551213144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c14531033af09499daf8c77e76a09f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalCoinsInGame: 0
+  playerStats: {fileID: 0}
 --- !u!1 &7904983156121620471
 GameObject:
   m_ObjectHideFlags: 0

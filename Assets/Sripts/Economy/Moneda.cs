@@ -5,7 +5,7 @@ using UnityEngine;
 public class Moneda : MonoBehaviour
 {
     [HideInInspector]
-    public int value;
+    public int value = 1;
 
     private AudioSource coinSound;
     [SerializeField] GameObject coinMesh;
@@ -28,7 +28,7 @@ public class Moneda : MonoBehaviour
             CoinSystem coins = other.gameObject.GetComponent<CoinSystem>();
             if (coins != null)
             {
-                coins.AddCoin(value);
+                coins.AddCoin();
             }
             coinMesh.SetActive(false);
             transform.GetComponent<SphereCollider>().enabled = false;
