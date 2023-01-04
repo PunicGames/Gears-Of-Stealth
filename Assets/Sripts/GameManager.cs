@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     static GameManager instance;
     [SerializeField] private PostProcessingControler pP_controller;
 
+    private bool isMuted = false;
 
     private void Start()
     {
@@ -23,35 +24,19 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             //OptionsInitilizer_DefaultValues();
         }
+
+        //Sound control
+        if (isMuted)
+        {
+            AudioListener.pause = true;
+        }
+        else
+        {
+            AudioListener.pause = false;
+        }
     }
 
    
-    //public void SetAntialiassing(int option)
-    //{
-    //
-    //    var pb = Camera.main.GetComponent<PostProcessLayer>();
-    //    switch (option)
-    //    {
-    //        case 0:
-    //            pb.antialiasingMode = PostProcessLayer.Antialiasing.None;
-    //            break;
-    //        case 1:
-    //            pb.antialiasingMode = PostProcessLayer.Antialiasing.FastApproximateAntialiasing;
-    //            pb.fastApproximateAntialiasing.fastMode = true;
-    //            break;
-    //        case 2:
-    //            pb.antialiasingMode = PostProcessLayer.Antialiasing.FastApproximateAntialiasing;
-    //            pb.fastApproximateAntialiasing.fastMode = false;
-    //            break;
-    //        case 3:
-    //            pb.antialiasingMode = PostProcessLayer.Antialiasing.SubpixelMorphologicalAntialiasing;
-    //            pb.subpixelMorphologicalAntialiasing.quality = SubpixelMorphologicalAntialiasing.Quality.Medium;
-    //            break;
-    //
-    //    }
-    //
-    //
-    //}
     public void OptionsInitilizer_DefaultValues()
     {
         PlayerPrefs.SetInt("bloomEffect", 1);
@@ -69,6 +54,25 @@ public class GameManager : MonoBehaviour
     public void ExitApplication()
     {
         Application.Quit();
+    }
+
+    public bool SetSound()
+    {
+        if (isMuted)
+        {
+            AudioListener.pause = false;
+            isMuted = false;
+            return true;
+        }
+        else
+        {
+            AudioListener.pause = true;
+            isMuted = true;
+            return false;
+
+        }
+
+
     }
 
 }

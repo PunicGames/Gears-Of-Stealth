@@ -7,6 +7,16 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
 
+    [SerializeField]
+    GameManager gm;
+
+    [SerializeField]
+    GameObject muteSymbol;
+    [SerializeField]
+    GameObject soundSymbol;
+
+   
+
     public void ActivateLevelSelector() { }
     public void PlayLevel1() { SceneManager.LoadScene("StealthDemo"); }
     public void PlayLevel2() { SceneManager.LoadScene("Level2"); }
@@ -24,5 +34,22 @@ public class MenuManager : MonoBehaviour
     public void SetQuality(int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
+    }
+
+    public void SetSound()
+    {
+        if (gm.SetSound())
+        {
+            muteSymbol.SetActive(false);
+            soundSymbol.SetActive(true);
+        }
+        else
+        {
+            muteSymbol.SetActive(true);
+            soundSymbol.SetActive(false);
+        }
+
+
+
     }
 }
