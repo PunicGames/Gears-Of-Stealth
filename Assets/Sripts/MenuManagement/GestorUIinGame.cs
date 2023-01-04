@@ -28,8 +28,6 @@ public class GestorUIinGame : MonoBehaviour
 
     private bool desktop = true;
 
-    public bool shooping;
-
     // Cursor
     [SerializeField] private Texture2D cursorSprite;
     private Vector2 cursorHotSpot;

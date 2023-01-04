@@ -141,7 +141,7 @@ public class Player : MonoBehaviour
 
     public void Shoot(InputAction.CallbackContext context)
     {
-        if (!PauseMenu.GameIsPaused && !uiGestor.shooping)
+        if (!PauseMenu.GameIsPaused)
         {
             if (shootingSystem)
             {
@@ -153,7 +153,7 @@ public class Player : MonoBehaviour
 
     public void ResetShoot(InputAction.CallbackContext context)
     {
-        if (!PauseMenu.GameIsPaused && !uiGestor.shooping)
+        if (!PauseMenu.GameIsPaused)
         {
             if (shootingSystem)
                 shootingSystem.shooting = false;
@@ -162,7 +162,7 @@ public class Player : MonoBehaviour
 
     public void Movement(InputAction.CallbackContext context)
     {
-        if (!PauseMenu.GameIsPaused && !uiGestor.shooping)
+        if (!PauseMenu.GameIsPaused)
         {
             isMoving = true;
             playerAnimator.SetBool("isMoving", true);
@@ -179,7 +179,7 @@ public class Player : MonoBehaviour
 
     public void MobileMovement(Vector2 context)
     {
-        if (!PauseMenu.GameIsPaused && !uiGestor.shooping)
+        if (!PauseMenu.GameIsPaused)
         {
             playerAnimator.SetBool("isMoving", true);
             CachedMoveInput = context;
@@ -192,7 +192,7 @@ public class Player : MonoBehaviour
 
     public void ResetMovement(InputAction.CallbackContext context)
     {
-        if (!PauseMenu.GameIsPaused && !uiGestor.shooping)
+        if (!PauseMenu.GameIsPaused)
         {
             isMoving = false;
             playerAnimator.SetBool("isMoving", false);
@@ -206,7 +206,7 @@ public class Player : MonoBehaviour
 
     public void MobileResetMovement()
     {
-        if (!PauseMenu.GameIsPaused && !uiGestor.shooping)
+        if (!PauseMenu.GameIsPaused)
         {
             playerAnimator.SetBool("isMoving", false);
             CachedMoveInput = new Vector2(0.0f, 0.0f);
@@ -219,7 +219,7 @@ public class Player : MonoBehaviour
 
     public void MousePosition(InputAction.CallbackContext context)
     {
-        if (!PauseMenu.GameIsPaused && !uiGestor.shooping)
+        if (!PauseMenu.GameIsPaused)
         {
             CachedAimInput = context.ReadValue<Vector2>();
         }
@@ -234,7 +234,7 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        if (!PauseMenu.GameIsPaused && !uiGestor.shooping)
+        if (!PauseMenu.GameIsPaused)
         {
             movement.Set(CachedMoveInput.x, 0.0f, CachedMoveInput.y);
             movement = Quaternion.Euler(0, cam.rotation.eulerAngles.y, 0) * movement;
@@ -246,7 +246,7 @@ public class Player : MonoBehaviour
 
     private void Aim()
     {
-        if (!PauseMenu.GameIsPaused && !uiGestor.shooping)
+        if (!PauseMenu.GameIsPaused)
         {
             Ray camRay = Camera.main.ScreenPointToRay(CachedAimInput);
 
@@ -266,7 +266,7 @@ public class Player : MonoBehaviour
 
     private void MobileAim()
     {
-        if (!PauseMenu.GameIsPaused && !uiGestor.shooping)
+        if (!PauseMenu.GameIsPaused)
         {
 
             if (CachedAimInput != Vector2.zero)
@@ -308,7 +308,7 @@ public class Player : MonoBehaviour
 
     private void SwapGun(InputAction.CallbackContext context)
     {
-        if (!PauseMenu.GameIsPaused && !uiGestor.shooping)
+        if (!PauseMenu.GameIsPaused)
         {
             shootingSystem.SwapGun();
         }
