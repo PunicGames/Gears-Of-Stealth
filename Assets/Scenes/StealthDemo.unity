@@ -42689,14 +42689,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6088971884832907723, guid: 232aed4ec87814b4eb0c67bafaebc907, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6725180312546887094, guid: 232aed4ec87814b4eb0c67bafaebc907, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7200754057579093793, guid: 232aed4ec87814b4eb0c67bafaebc907, type: 3}
       propertyPath: alarmSystem
       value: 

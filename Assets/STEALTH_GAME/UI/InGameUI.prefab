@@ -2422,6 +2422,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2103441911922229439}
+        m_TargetAssemblyTypeName: ButtonSFX, Assembly-CSharp
+        m_MethodName: PlayAccept
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1800952347708106562
 GameObject:
   m_ObjectHideFlags: 0
@@ -8189,7 +8201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2064616618907458175
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10427,6 +10439,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2103441911922229439}
+        m_TargetAssemblyTypeName: ButtonSFX, Assembly-CSharp
+        m_MethodName: PlayAccept
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6725180312003746540
 GameObject:
   m_ObjectHideFlags: 0
@@ -10700,6 +10724,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7200754057579093793}
         m_TargetAssemblyTypeName: GestorUIinGame, Assembly-CSharp
         m_MethodName: GoBackMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2103441911922229439}
+        m_TargetAssemblyTypeName: ButtonSFX, Assembly-CSharp
+        m_MethodName: PlayCancel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11404,6 +11440,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2103441911922229439}
+        m_TargetAssemblyTypeName: ButtonSFX, Assembly-CSharp
+        m_MethodName: PlayAccept
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6725180312546887094
 GameObject:
   m_ObjectHideFlags: 0
@@ -11422,7 +11470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6725180312546887095
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12622,6 +12670,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2103441911922229439}
+        m_TargetAssemblyTypeName: ButtonSFX, Assembly-CSharp
+        m_MethodName: PlayCancel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6725180312972932313
 GameObject:
   m_ObjectHideFlags: 0
@@ -13118,6 +13178,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7200754057579093793}
         m_TargetAssemblyTypeName: GestorUIinGame, Assembly-CSharp
         m_MethodName: GoBackMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2103441911922229439}
+        m_TargetAssemblyTypeName: ButtonSFX, Assembly-CSharp
+        m_MethodName: PlayCancel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
