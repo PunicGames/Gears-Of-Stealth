@@ -7,7 +7,7 @@ public class Tonys_Bullet : MonoBehaviour
  
     private Rigidbody rb;
     public float damage = 10;
-    public float timeToDestroy = .25f;
+    public float timeToDestroy = 1;
     public int numberOfCollisions = 0;
     public bool stoppedByWalls = true;
 
@@ -130,7 +130,13 @@ public class Tonys_Bullet : MonoBehaviour
         if (other.gameObject.tag == "Wall" || other.gameObject.tag == "Shop")
         {
             if (stoppedByWalls)
-                Destroy(gameObject);
+            {
+                GetComponent<SoundEmitter>().MakeSoundBullet(7f);
+                GetComponent<AudioSource>().Play();
+                GetComponent<Collider>().enabled = false;
+                GetComponent<MeshRenderer>().enabled = false;
+                Destroy(gameObject,0.2f);
+            }
             else
             {
                 numberOfCollisions--;

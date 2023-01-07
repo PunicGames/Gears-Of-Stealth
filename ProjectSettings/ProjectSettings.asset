@@ -138,7 +138,7 @@ PlayerSettings:
   preloadedAssets:
   - {fileID: 919132149155446097, guid: 9d1aa22b0dcc44d48bb03abb83c041e4, type: 3}
   - {fileID: 919132149155446097, guid: 94f6e24a780fb8343b7e4471fbfe0973, type: 3}
-  - {fileID: 6505218325808694531, guid: 3c923eaafb98e0e4c81327e3a8e7d669, type: 3}
+  - {fileID: 0}
   - {fileID: 7126293510535426713, guid: 317f6329994b0334ead09359c9b02da2, type: 3}
   - {fileID: 4621079626020336588, guid: c8288bd60c73b0647a2f031203a3b7e1, type: 3}
   - {fileID: 8758139205775711030, guid: c147c7714cd4d2a4eafabd92febe247d, type: 3}
@@ -146,6 +146,11 @@ PlayerSettings:
   - {fileID: 6745596596922479086, guid: 797924d3dd4e9854fa08d6363a031f44, type: 3}
   - {fileID: 8627989844424746842, guid: d1979d1d78387a344bf4f60a0103aa82, type: 3}
   - {fileID: 919294009874013116, guid: 31c898b8220e6fe4fbe7c5963c762b5f, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -165,7 +170,8 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Android: com.PunicGames.GearsOfHell
   buildNumber:
     Standalone: 0
     iPhone: 0

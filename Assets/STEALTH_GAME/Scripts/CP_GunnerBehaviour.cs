@@ -111,7 +111,11 @@ public class CP_GunnerBehaviour : MonoBehaviour
     private enum combatState { IDLE, PURSUE, ATTACK, RECHARGE, GRENADE };
     private combatState currenCombatState = combatState.IDLE;
 
-    private enum standardState { IDLE, PATROLLING, COMBAT, ALERTED, ALERTED_IDLE, SEEK_ALARM };
+    private enum standardState
+    {
+        IDLE, PATROLLING, COMBAT, ALERTED, ALERTED_IDLE, SEEK_ALARM,
+        DEAD
+    }
     private standardState currentState = standardState.IDLE;
     private float speed;
     private int targetMask;
@@ -129,29 +133,25 @@ public class CP_GunnerBehaviour : MonoBehaviour
         vision = GetComponent<EnemyVision>();
         soundEmitter = GetComponent<SoundEmitter>();
 
-        GetComponent<EnemyHealth>().takeDamage += ()=> {
+        GetComponent<EnemyHealth>().takeDamage += () =>
+        {
             if (currentState != standardState.COMBAT)
             {
-                if (GetComponent<EnemyHealth>().currentHealth <= 0)
+                if (GetComponent<EnemyHealth>().currentHealth > 0)
                 {
-
-                    soundEmitter.MakeSound(5f);
-                    enabled = false;
-
-                    return;
-                }
-                soundManager.OverlapedPlaySound("underAttack");
-                TransitionToAlert(RandomNavmeshLocation(4, transform.position), false);
-            }
-            else
-            {
-                if (GetComponent<EnemyHealth>().currentHealth <= 0)
-                {
-                    enabled = false;
+                    soundManager.OverlapedPlaySound("underAttack");
+                    TransitionToAlert(RandomNavmeshLocation(4, transform.position), false);
                 }
             }
+
         };
+        GetComponent<EnemyHealth>().onDeath += () =>
+        {
+            soundEmitter.MakeSound(5f);
+            TransitionToDeath();
+            enabled = false;
 
+        };
         vision.onAlert += TransitionToAlert;
         vision.onSpot += TransitionToCombat;
         //vision.onLostingSight += () => { CancelInvoke(nameof(ForgetHeSawPlayer)); Invoke(nameof(ForgetHeSawPlayer), forgetTime); Debug.Log("w"); };
@@ -349,6 +349,8 @@ public class CP_GunnerBehaviour : MonoBehaviour
                     alarmDevice.SoundAlarm(playerLastSeenPos);
                     TransitionToAlert(playerLastSeenPos, true);
                 }
+                break;
+            case standardState.DEAD:
                 break;
             default:
                 break;
@@ -726,9 +728,21 @@ public class CP_GunnerBehaviour : MonoBehaviour
         agent.SetDestination(alarms[nearestIndex].position);
         currentState = standardState.SEEK_ALARM;
 
+
+    }
+    void TransitionToDeath()
+    {
+        StopAllCoroutines();
+        CancelInvoke();
+        alertVFX.SetActive(false);
+        spotVFX.SetActive(false);
+        Debug.Log("dead");
+        currentState = standardState.DEAD;
+
     }
     #endregion
     #region utilityPatrolFunctions
+
 
     IEnumerator LerpTurnTo(float time, Vector3 lookat)
     {
@@ -770,6 +784,16 @@ public class CP_GunnerBehaviour : MonoBehaviour
         }
 
     }
+    public void ListenToBulletSound(Vector3 soundOrigin)
+    {
+        if (currentState != standardState.COMBAT)
+        {
+
+            TransitionToAlert(RandomNavmeshLocation(2, soundOrigin), true);
+
+        }
+
+    }
 
     private void ReinforcePosition(Vector3 lastSeenPos)
     {
@@ -778,7 +802,7 @@ public class CP_GunnerBehaviour : MonoBehaviour
             if (currentState != standardState.COMBAT && currentState != standardState.ALERTED)
             {
                 //TransitionToAlert(lastSeenPos, true);
-                TransitionToAlert(RandomNavmeshLocation(20,lastSeenPos), true);
+                TransitionToAlert(RandomNavmeshLocation(20, lastSeenPos), true);
             }
         }
         else

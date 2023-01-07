@@ -15,7 +15,7 @@ public class CP_JacobExtended : MonoBehaviour
     public float shootSoundRadius = 4;
     public float crouchSoundRadius = 1.5f;
     public float walkSoundRadius = 6;
-    private bool isCrouching;
+    public bool isCrouching;
 
     void Start()
     {

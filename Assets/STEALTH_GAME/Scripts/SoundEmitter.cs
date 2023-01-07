@@ -36,4 +36,28 @@ public class SoundEmitter : MonoBehaviour
         }
 
     }
+    public void MakeSoundBullet(float soundRadius)
+    {
+        Collider[] soundRangeChecks = Physics.OverlapSphere(transform.position, soundRadius, targetMask);
+
+        foreach (var colleage in soundRangeChecks)
+        {
+            Vector3 directionToTarget = (colleage.gameObject.transform.position - transform.position).normalized;
+            float distanceToTarget = Vector3.Distance(transform.position, colleage.gameObject.transform.position);
+            if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+            {
+                CP_GunnerBehaviour gunner = colleage.gameObject.GetComponent<CP_GunnerBehaviour>();
+                gunner?.ListenToBulletSound(transform.position);
+            }
+            else
+            {
+                if (distanceToTarget < radius * .5f)
+                {
+                    CP_GunnerBehaviour gunner = colleage.gameObject.GetComponent<CP_GunnerBehaviour>();
+                    gunner?.ListenToBulletSound(transform.position);
+                }
+            }
+        }
+
+    }
 }
