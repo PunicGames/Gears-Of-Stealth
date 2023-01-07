@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
 
     //Joysticks reference
     private VariableJoystick leftJoystick;
+    private SoundEmitter emitter;
     private VariableJoystick rightJoystick;
 
     //Delegates
@@ -79,40 +80,41 @@ public class Player : MonoBehaviour
     {
         //playerAnimator.SetBool("isRifle", true);
         footSteps.volume *= AudioManager.getGeneralVolume();
-
+        GetComponent<Animator>().SetBool("isCrouching", true);
         cam = GameObject.FindGameObjectWithTag("MainCamera").transform;
 
         if (!desktop)
         {
-            leftJoystick = GameObject.Find("LeftJoystick").GetComponent<VariableJoystick>();
-            rightJoystick = GameObject.Find("RightJoystick").GetComponent<VariableJoystick>();
+            //rightJoystick = GameObject.Find("RightJoystick").GetComponent<VariableJoystick>();
         }
-
+        leftJoystick = GameObject.Find("LeftJoystick").GetComponent<VariableJoystick>();
+        emitter = GetComponent<SoundEmitter>();
+        emitter.radius = 5;
     }
     private void Update()
     {
-        float angle = Vector3.Angle(transform.forward, movement);
+        //float angle = Vector3.Angle(transform.forward, movement);
 
-        if (angle > 40)
-        {
-            float signedAngle = Vector3.SignedAngle(transform.forward, movement, transform.up);
-            if (signedAngle < 140 && signedAngle > 0)
-                playerAnimator.SetFloat("VelX", Mathf.Lerp(playerAnimator.GetFloat("VelX"), 1.5f, Time.deltaTime * 10));
-            else if (signedAngle < 0 && signedAngle > -140)
-                playerAnimator.SetFloat("VelX", Mathf.Lerp(playerAnimator.GetFloat("VelX"), 2f, Time.deltaTime * 10));
+        //if (angle > 40)
+        //{
+        //    float signedAngle = Vector3.SignedAngle(transform.forward, movement, transform.up);
+        //    if (signedAngle < 140 && signedAngle > 0)
+        //        playerAnimator.SetFloat("VelX", Mathf.Lerp(playerAnimator.GetFloat("VelX"), 1.5f, Time.deltaTime * 10));
+        //    else if (signedAngle < 0 && signedAngle > -140)
+        //        playerAnimator.SetFloat("VelX", Mathf.Lerp(playerAnimator.GetFloat("VelX"), 2f, Time.deltaTime * 10));
 
-            //if (angle < 140) //playerAnimator.SetFloat("VelX", 1.5f); 
-            //    playerAnimator.SetFloat("VelX", Mathf.Lerp(playerAnimator.GetFloat("VelX"), 1.5f, Time.deltaTime * 15));
-            else
-                playerAnimator.SetFloat("VelX", Mathf.Lerp(playerAnimator.GetFloat("VelX"), 1, Time.deltaTime * 10));
-            //Activa animación hacia atras
-            //playerAnimator.GetFloat("VelX");
-            //playerAnimator.SetFloat("VelX", 1);
-        }
-        else
-            //Activa animación hacia delante
-            //playerAnimator.SetFloat("VelX", 0);
-            playerAnimator.SetFloat("VelX", Mathf.Lerp(playerAnimator.GetFloat("VelX"), 0, Time.deltaTime * 10));
+        //    //if (angle < 140) //playerAnimator.SetFloat("VelX", 1.5f); 
+        //    //    playerAnimator.SetFloat("VelX", Mathf.Lerp(playerAnimator.GetFloat("VelX"), 1.5f, Time.deltaTime * 15));
+        //    else
+        //        playerAnimator.SetFloat("VelX", Mathf.Lerp(playerAnimator.GetFloat("VelX"), 1, Time.deltaTime * 10));
+        //    //Activa animación hacia atras
+        //    //playerAnimator.GetFloat("VelX");
+        //    //playerAnimator.SetFloat("VelX", 1);
+        //}
+        //else
+        //    //Activa animación hacia delante
+        //    //playerAnimator.SetFloat("VelX", 0);
+        //    playerAnimator.SetFloat("VelX", Mathf.Lerp(playerAnimator.GetFloat("VelX"), 0, Time.deltaTime * 10));
     }
 
     private void FixedUpdate()
@@ -123,17 +125,17 @@ public class Player : MonoBehaviour
 
         if (!desktop)
         {
-            MobileMovement(leftJoystick.input);
-            CachedAimInput = rightJoystick.input;
+            //CachedAimInput = rightJoystick.input;
 
         }
+        MobileMovement(leftJoystick.input);
 
         Move();
 
-        if (!desktop)
-            MobileAim();
-        else
-            Aim();
+        //if (!desktop)
+        //    MobileAim();
+        //else
+        //    Aim();
 
 
     }
@@ -181,10 +183,42 @@ public class Player : MonoBehaviour
     {
         if (!PauseMenu.GameIsPaused)
         {
+            isMoving = true;
+            if (context.sqrMagnitude < 0.5)
+            {
+                if (context.sqrMagnitude < 0.1)
+                {
+                    playerAnimator.SetFloat("vel", 0.5f);
+                    footSteps.volume = 0.1f;
+                    footSteps.pitch = .4f;
+                }
+                else
+                {
+                    playerAnimator.SetFloat("vel", 1f);
+                    footSteps.volume = 0.2f;
+                    footSteps.pitch = .69f;
+
+                }
+                GetComponent<CP_JacobExtended>().isCrouching = true;
+                GetComponent<Animator>().SetBool("isCrouching", true);
+                //playerAnimator.SetFloat("vel", 0.6f);
+            }
+            else
+            {
+                playerAnimator.SetFloat("vel", 1f);
+                GetComponent<CP_JacobExtended>().isCrouching = false;
+                GetComponent<Player>().footSteps.pitch = 1;
+                GetComponent<Player>().footSteps.volume = 1f;
+                GetComponent<Animator>().SetBool("isCrouching", false);
+            }
+
+
             playerAnimator.SetBool("isMoving", true);
             CachedMoveInput = context;
             if (context == Vector2.zero)
                 MobileResetMovement();
+            else
+                transform.eulerAngles = new Vector3(0, (Mathf.Atan2(context.x, context.y) * Mathf.Rad2Deg) + cam.rotation.eulerAngles.y, 0);
             if (!footSteps.mute && !footSteps.isPlaying && context != Vector2.zero)
                 footSteps.Play();
         }
@@ -236,11 +270,14 @@ public class Player : MonoBehaviour
     {
         if (!PauseMenu.GameIsPaused)
         {
+
             movement.Set(CachedMoveInput.x, 0.0f, CachedMoveInput.y);
             movement = Quaternion.Euler(0, cam.rotation.eulerAngles.y, 0) * movement;
             movement = movement * speed * Time.deltaTime;
 
             rb.MovePosition(transform.position + movement);
+
+
         }
     }
 
@@ -301,9 +338,9 @@ public class Player : MonoBehaviour
 
     private void ReloadGun(InputAction.CallbackContext context)
     {
-        
-            //shootingSystem.Reload();
-        
+
+        //shootingSystem.Reload();
+
     }
 
     private void SwapGun(InputAction.CallbackContext context)

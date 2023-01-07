@@ -90,17 +90,9 @@ public class EnemyHealth : MonoBehaviour
         isDead = true;
         collider.enabled = false;
 
-        if (enemyType == EnemyType.EXPLOSIVE_SPIDERBOT)
-        {
-            
-            CountStats();
+       
             onDeath?.Invoke();
-            return;
-        }
-        else if (enemyType == EnemyType.GUNSLINGER)
-        {
-            onDeath?.Invoke();
-        }
+       
         
 
         NavMeshAgent navMov = GetComponent<NavMeshAgent>();
