@@ -8,12 +8,12 @@ PlayerSettings:
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 3
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Punic Games
-  productName: Gears Of Hell
+  productName: Gears Of Stealth
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -146,6 +146,7 @@ PlayerSettings:
   - {fileID: 6745596596922479086, guid: 797924d3dd4e9854fa08d6363a031f44, type: 3}
   - {fileID: 8627989844424746842, guid: d1979d1d78387a344bf4f60a0103aa82, type: 3}
   - {fileID: 919294009874013116, guid: 31c898b8220e6fe4fbe7c5963c762b5f, type: 3}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -393,27 +394,37 @@ PlayerSettings:
       m_SubKind: App Store
   - m_BuildTarget: Android
     m_Icons:
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 284d29b211ced994d8e787ddf2164559, type: 3}
+      - {fileID: 2800000, guid: 3e67e8f539e25e2439f7b8d2da0309d6, type: 3}
       m_Width: 432
       m_Height: 432
       m_Kind: 2
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 6c2bdb57afd697b4a84179ded0490b0e, type: 3}
+      - {fileID: 2800000, guid: a80f47e5fcb003e429de67c751a790f4, type: 3}
       m_Width: 324
       m_Height: 324
       m_Kind: 2
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 5be766a5ed193264f97e459da8ca6d77, type: 3}
+      - {fileID: 2800000, guid: 9e01302c64ca5364db5a4a409b1c6e71, type: 3}
       m_Width: 216
       m_Height: 216
       m_Kind: 2
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 9a9c956ef0f8c0b49ba14e4318a6fff4, type: 3}
+      - {fileID: 2800000, guid: 099afa57a1626b048a088a3e24ef13c8, type: 3}
       m_Width: 162
       m_Height: 162
       m_Kind: 2
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 78b4097042b97854ab7b9ada731c5746, type: 3}
+      - {fileID: 2800000, guid: d5f821bfbdb251d439e14d9ca038c69d, type: 3}
       m_Width: 108
       m_Height: 108
       m_Kind: 2
@@ -423,32 +434,38 @@ PlayerSettings:
       m_Height: 81
       m_Kind: 2
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 028cb30200d408743941329df3a39145, type: 3}
       m_Width: 192
       m_Height: 192
       m_Kind: 1
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: b4834dcff73f4b049bd4a13eed2839d6, type: 3}
       m_Width: 144
       m_Height: 144
       m_Kind: 1
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 470b66a5f0bbd5444946896323979397, type: 3}
       m_Width: 96
       m_Height: 96
       m_Kind: 1
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 5725a0ae2904d5f4b91b26ac0d04e101, type: 3}
       m_Width: 72
       m_Height: 72
       m_Kind: 1
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 5d54461574de1494fa205b7262eb8d0d, type: 3}
       m_Width: 48
       m_Height: 48
       m_Kind: 1
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 0}
       m_Width: 36
       m_Height: 36
       m_Kind: 1
