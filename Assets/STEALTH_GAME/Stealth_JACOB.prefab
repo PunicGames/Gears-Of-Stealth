@@ -46787,7 +46787,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5805845, y: 1.3666788, z: 0.48770428}
+  m_Size: {x: 0.6, y: 1.3666788, z: 0.6}
   m_Center: {x: 0.010565281, y: 0.6482616, z: -0.02003026}
 --- !u!114 &7061297054457857739
 MonoBehaviour:
@@ -47241,7 +47241,7 @@ SphereCollider:
   m_GameObject: {fileID: 7872201523551213144}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.8947536
   m_Center: {x: 0, y: 0.52, z: -0.02}
@@ -47422,6 +47422,7 @@ MonoBehaviour:
   shootSoundRadius: 3.5
   crouchSoundRadius: 1.5
   walkSoundRadius: 6
+  isCrouching: 0
 --- !u!114 &1585553159527981007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47435,7 +47436,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalCoinsInGame: 0
-  playerStats: {fileID: 0}
 --- !u!1 &7904983156121620471
 GameObject:
   m_ObjectHideFlags: 0

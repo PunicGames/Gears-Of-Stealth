@@ -778,7 +778,7 @@ public class CP_GunnerBehaviour : MonoBehaviour
     {
         if (currentState != standardState.COMBAT)
         {
-            if (currentState != standardState.ALERTED )
+            if (currentState != standardState.ALERTED)
                 TransitionToAlert(RandomNavmeshLocation(2, soundOrigin), true);
             else
             {
@@ -845,4 +845,13 @@ public class CP_GunnerBehaviour : MonoBehaviour
         return finalPosition;
     }
     #endregion
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if (currentState != standardState.COMBAT)
+                TransitionToCombat();
+        }
+    }
 }

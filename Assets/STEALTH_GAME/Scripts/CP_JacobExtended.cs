@@ -72,9 +72,11 @@ public class CP_JacobExtended : MonoBehaviour
     {
         if (!PauseMenu.GameIsPaused)
         {
-
-            shoot_sys.shooting = true;
-            shoot_sys.Shooting();
+            if (GetComponent<Health>().currentHealth > 0)
+            {
+                shoot_sys.shooting = true;
+                shoot_sys.Shooting();
+            }
 
         }
     }
