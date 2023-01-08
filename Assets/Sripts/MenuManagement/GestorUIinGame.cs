@@ -83,15 +83,15 @@ public class GestorUIinGame : MonoBehaviour
 
     public void Pause()
     {
-        mobileUI?.SetActive(false);
-        pauseUI?.SetActive(true);
+        mobileUI.SetActive(false);
+        pauseUI.SetActive(true);
         Time.timeScale = 0.0f;
     }
     public void Unpause()
     {
         Time.timeScale = 1.0f;
-        pauseUI?.SetActive(false);
-        mobileUI?.SetActive(true);
+        pauseUI.SetActive(false);
+        mobileUI.SetActive(true);
     }
 
     public void Retry()

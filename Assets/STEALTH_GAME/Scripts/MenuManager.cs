@@ -18,7 +18,7 @@ public class MenuManager : MonoBehaviour
    
 
     public void ActivateLevelSelector() { }
-    public void PlayLevel1() { SceneManager.LoadScene("StealthDemo"); }
+    public void PlayLevel1() { SceneManager.LoadScene("Level1"); }
     public void PlayLevel2() { SceneManager.LoadScene("Level2"); }
     public void PlayLevel3() { SceneManager.LoadScene("Level3"); }
     public void ActivateMainMenu() { }

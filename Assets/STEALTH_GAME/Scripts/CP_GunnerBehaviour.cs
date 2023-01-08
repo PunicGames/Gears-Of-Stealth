@@ -140,7 +140,10 @@ public class CP_GunnerBehaviour : MonoBehaviour
                 if (GetComponent<EnemyHealth>().currentHealth > 0)
                 {
                     soundManager.OverlapedPlaySound("underAttack");
-                    TransitionToAlert(RandomNavmeshLocation(4, transform.position), false);
+                    if (!isReinforcement)
+                        TransitionToSeekAlarm();
+                    else
+                        TransitionToAlert(RandomNavmeshLocation(4, transform.position), true);
                 }
             }
 
@@ -162,7 +165,8 @@ public class CP_GunnerBehaviour : MonoBehaviour
         soundManager = GetComponent<EnemySoundManager>();
 
         alarmDevice = (Alarm)FindObjectOfType(typeof(Alarm));
-        alarmDevice.onStartAlarm += ReinforcePosition;
+        if (alarmDevice)
+            alarmDevice.onStartAlarm += ReinforcePosition;
         if (isReinforcement)
         {
             alarmDevice.onStopAlarm += ReturnToPost;
@@ -774,7 +778,7 @@ public class CP_GunnerBehaviour : MonoBehaviour
     {
         if (currentState != standardState.COMBAT)
         {
-            if (currentState != standardState.ALERTED)
+            if (currentState != standardState.ALERTED )
                 TransitionToAlert(RandomNavmeshLocation(2, soundOrigin), true);
             else
             {
@@ -788,8 +792,13 @@ public class CP_GunnerBehaviour : MonoBehaviour
     {
         if (currentState != standardState.COMBAT)
         {
-
-            TransitionToAlert(RandomNavmeshLocation(2, soundOrigin), true);
+            if (currentState != standardState.ALERTED && currentState != standardState.ALERTED_IDLE)
+                TransitionToAlert(RandomNavmeshLocation(2, soundOrigin), true);
+            else
+            {
+                soundManager.OverlapedPlaySound("underAttack");
+                TransitionToSeekAlarm();
+            }
 
         }
 
