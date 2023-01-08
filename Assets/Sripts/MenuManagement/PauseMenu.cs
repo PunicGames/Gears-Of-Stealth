@@ -20,7 +20,7 @@ public class PauseMenu : MonoBehaviour
     public delegate void PauseAllSounds(bool state);
     public static PauseAllSounds pauseAllSounds;
     public static PauseAllSounds pauseShopMusic;
-    
+
     // Platform control
     private bool desktop;
 
@@ -62,12 +62,11 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        if (!OptionsMenu.activeSelf)
-        {
-            PauseMenuUI.SetActive(false);
-            Time.timeScale = 1f;
-            GameIsPaused = false;
-        }
+
+        PauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+
 
         pauseAllSounds?.Invoke(false);
         pauseShopMusic?.Invoke(false);
@@ -94,7 +93,7 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    public static void PauseEnemySounds(bool state) 
+    public static void PauseEnemySounds(bool state)
     {
         pauseAllSounds?.Invoke(state);
     }

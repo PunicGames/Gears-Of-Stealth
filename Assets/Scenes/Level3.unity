@@ -7857,6 +7857,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2063504198426582731, guid: 232aed4ec87814b4eb0c67bafaebc907, type: 3}
+      propertyPath: m_text
+      value: 'It will be tough...
+
+
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 3037456109670685906, guid: 232aed4ec87814b4eb0c67bafaebc907, type: 3}
       propertyPath: m_Name
       value: InGameUI
@@ -7908,6 +7916,12 @@ PrefabInstance:
     - target: {fileID: 6088971884832907723, guid: 232aed4ec87814b4eb0c67bafaebc907, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6545759018894858153, guid: 232aed4ec87814b4eb0c67bafaebc907, type: 3}
+      propertyPath: m_text
+      value: 'but greatness comes from small beginnings.
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 6725180312546887094, guid: 232aed4ec87814b4eb0c67bafaebc907, type: 3}
       propertyPath: m_IsActive
